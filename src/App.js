@@ -142,8 +142,7 @@ function App() {
     return questions.slice(start, end);
   };
 
-
-   return (
+  return (
     <div className="App">
       <header>
         <h2>정보처리산업기사 과정평가형 기출예상 문제</h2>
@@ -275,11 +274,11 @@ function App() {
                     const question = questions[questionNumber - 1];
                     const correctAnswer = question.answer;
                     const correctAnswerText = question.options
-                      ? question.options.find((option) => Object.keys(option)[0] === correctAnswer)[
-                          correctAnswer
-                        ]
+                      ? `${correctAnswer} (${question.options.find((option) => Object.keys(option)[0] === correctAnswer)[correctAnswer]})`
                       : correctAnswer;
-                    const userAnswer = answer.selected || answer.input || "선택 안 함";
+                    const userAnswer = answer.selected
+                      ? `${answer.selected} (${question.options?.find((option) => Object.keys(option)[0] === answer.selected)?.[answer.selected] || "선택 안 함"})`
+                      : answer.input || "선택 안 함";
 
                     return (
                       <tr key={key}>
@@ -299,5 +298,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;

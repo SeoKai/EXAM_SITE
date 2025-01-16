@@ -62,6 +62,19 @@ function App() {
     setSelectedFiles([]);
   };
 
+  const handleSelectWithKeyword = (keyword) => {
+    setSelectedFiles(fileList.filter((file) => file.includes(keyword)));
+  };
+
+  const handleDeselectWithKeyword = (keyword) => {
+    setSelectedFiles((prev) => prev.filter((file) => !file.includes(keyword)));
+  };
+
+  const handleSelectByNumber = (number) => {
+    const regex = new RegExp(`^${number}_`);
+    setSelectedFiles(fileList.filter((file) => regex.test(file)));
+  };
+
   const handleCheckboxChange = (questionNumber, optionKey) => {
     setAnswers((prevAnswers) => {
       const question = questions[questionNumber - 1];
@@ -162,6 +175,22 @@ function App() {
             <h3>시험 모듈_목차 선택</h3>
             <button onClick={handleSelectAll}>전체 선택</button>
             <button onClick={handleDeselectAll}>전체 선택 해제</button>
+            <button onClick={() => handleSelectWithKeyword("빈칸")}>"빈칸" 포함 선택</button>
+            <button onClick={() => handleDeselectWithKeyword("빈칸")}>"빈칸" 포함 해제</button>
+            <button onClick={() => handleSelectWithKeyword("4지선다")}>"4지선다" 포함 선택</button>
+            <input
+              style={{width:"80px"}}
+              type="number"
+            
+              placeholder="번호선택"
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleSelectByNumber(e.target.value);
+                }
+              }}
+            />
+            <button onClick={() => handleDeselectWithKeyword("4지선다")}>"4지선다" 포함 해제</button>
+            
             <table>
               <thead>
                 <tr>

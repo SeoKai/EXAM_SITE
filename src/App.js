@@ -12,7 +12,7 @@ function App() {
   const [isFinished, setIsFinished] = useState(false); // 종료 여부 상태 관리
   const [selectedFiles, setSelectedFiles] = useState([]); // 선택된 파일 목록
   const QUESTIONS_PER_PAGE = 10; // 한 페이지당 보여줄 문제 수
-
+  const [version, setVersion] = useState("VERSION 1.0")
 
   useEffect(() => {
     fetch(`${process.env.PUBLIC_URL}/dataset/file-list.json`)
@@ -147,8 +147,8 @@ function App() {
       <header>
         <h2>정보처리산업기사 과정평가형 기출예상 문제</h2>
         <div className="copyright">
-             Developed by Jung Woo Gyun, 2025. <br/>
-             Email : jwg8910@naver.com <br/>
+             Developed by Jung Woo Gyun, 2025. | {version} <br/>
+             Email : jwg8910@naver.com  | Kakao : jwg1323 (선호) <br/>
              정리된 자료주시면 문제에 반영하겠습니다<br/>
         </div>
       </header>

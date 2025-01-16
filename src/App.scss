@@ -7,9 +7,20 @@ body{
     padding : 0;
 }
 header{
-    height : 50px;
+    height : 70px;
     border : 1px solid;
-    background-color: orange;
+    padding-left : 20px;
+    background-color: black;
+    color : white;
+    position:relative;
+    .copyright{
+
+        position:absolute;
+        right:10px;
+        bottom : 10px;
+        color:white;
+        font-size:.8rem;
+    }
 }
 main{
     padding : 20px;

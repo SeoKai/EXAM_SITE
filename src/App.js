@@ -32,7 +32,7 @@ function App() {
           // 초기 정답 상태 설정
           const initialAnswers = {};
           combinedQuestions.forEach((question) => {
-            initialAnswers[question.id] = { selected: "", result: "" };
+            initialAnswers[question.id] = { selected: "", result: "", input: "" };
           });
           setAnswers(initialAnswers);
         });
@@ -67,11 +67,23 @@ function App() {
       return {
         ...prevAnswers,
         [questionId]: {
+          ...prevAnswers[questionId],
           selected: optionKey,
           result: isCorrect ? "O" : "X",
         },
       };
     });
+  };
+
+  const handleInputChange = (questionId, value) => {
+    setAnswers((prevAnswers) => ({
+      ...prevAnswers,
+      [questionId]: {
+        ...prevAnswers[questionId],
+        input: value,
+        result: allQuestions.find((q) => q.id === questionId).answer === value ? "O" : "X",
+      },
+    }));
   };
 
   const toggleAnswerVisibility = (questionId) => {
@@ -96,12 +108,13 @@ function App() {
   };
 
   const handleFinish = () => {
-    // 체크하지 않은 항목을 모두 오답으로 처리
     const updatedAnswers = { ...answers };
     allQuestions.forEach((question) => {
-      if (!updatedAnswers[question.id]?.selected) {
+      if (!updatedAnswers[question.id]?.selected && !updatedAnswers[question.id]?.input) {
         updatedAnswers[question.id] = {
+          ...updatedAnswers[question.id],
           selected: "선택 안 함",
+          input: "",
           result: "X",
         };
       }
@@ -110,48 +123,11 @@ function App() {
     setIsFinished(true);
   };
 
-  const getResults = () => {
-    const totalQuestions = allQuestions.length; // 전체 문항 수
-    const totalCorrect = Object.values(answers).filter(
-      (ans) => ans.result === "O"
-    ).length; // 정답 수
-    const totalIncorrect = totalQuestions - totalCorrect; // 오답 수
-
-    const incorrectDetails = allQuestions
-      .filter((q) => answers[q.id]?.result === "X")
-      .map((q) => {
-        const correctOptionKey = q.answer; // 정답 옵션 키 (a, b, c, d)
-        const correctOptionText =
-          q.options.find((option) => Object.keys(option)[0] === correctOptionKey)[
-            correctOptionKey
-          ]; // 정답 옵션의 텍스트
-        const userOptionKey = answers[q.id]?.selected || "선택 안 함";
-        const userOptionText =
-          userOptionKey !== "선택 안 함"
-            ? q.options.find((option) => Object.keys(option)[0] === userOptionKey)[
-                userOptionKey
-              ]
-            : "선택 안 함";
-
-        return {
-          questionNumber: allQuestions.indexOf(q) + 1, // 문제 번호 추가
-          question: q.question,
-          correctAnswer: `${correctOptionKey} (${correctOptionText})`,
-          userAnswer:
-            userOptionKey === "선택 안 함"
-              ? "선택 안 함"
-              : `${userOptionKey} (${userOptionText})`,
-        };
-      });
-
-    return { totalQuestions, totalCorrect, totalIncorrect, incorrectDetails };
-  };
-
-  const { totalQuestions, totalCorrect, totalIncorrect, incorrectDetails } = getResults();
-
   return (
     <div className="App">
-      <header>헤더</header>
+      <header>
+        <h2>정보처리산업기사 과정평가형 기출예상 문제</h2>
+      </header>
       <main>
         {!isFinished ? (
           <>
@@ -167,30 +143,39 @@ function App() {
                     </strong>{" "}
                     {question.question}
                   </p>
-                  <ul>
-                    {question.options.map((option, index) => {
-                      const optionKey = Object.keys(option)[0];
-                      const optionValue = Object.values(option)[0];
-                      return (
-                        <li key={index}>
-                          <label>
-                            <input
-                              type="checkbox"
-                              name={`question-${question.id}`}
-                              value={optionKey}
-                              checked={
-                                answers[question.id]?.selected === optionKey
-                              }
-                              onChange={() =>
-                                handleCheckboxChange(question.id, optionKey)
-                              }
-                            />
-                            {optionValue}
-                          </label>
-                        </li>
-                      );
-                    })}
-                  </ul>
+                  {question.options ? (
+                    <ul>
+                      {question.options.map((option, index) => {
+                        const optionKey = Object.keys(option)[0];
+                        const optionValue = Object.values(option)[0];
+                        return (
+                          <li key={index}>
+                            <label>
+                              <input
+                                type="checkbox"
+                                name={`question-${question.id}`}
+                                value={optionKey}
+                                checked={answers[question.id]?.selected === optionKey}
+                                onChange={() =>
+                                  handleCheckboxChange(question.id, optionKey)
+                                }
+                              />
+                              {optionValue}
+                            </label>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  ) : (
+                    <input
+                      type="text"
+                      value={answers[question.id]?.input || ""}
+                      onChange={(e) =>
+                        handleInputChange(question.id, e.target.value)
+                      }
+                      placeholder="답을 입력하세요"
+                    />
+                  )}
                   <button onClick={() => toggleAnswerVisibility(question.id)}>
                     {showAnswers[question.id] ? "숨기기" : "정답 확인"}
                   </button>
@@ -208,31 +193,13 @@ function App() {
         ) : (
           <div>
             <h3>결과</h3>
-            <p>전체 문항 수: {totalQuestions}</p>
-            <p>정답 수: {totalCorrect}</p>
-            <p>오답 수: {totalIncorrect}</p>
-            <h3>틀린 문제</h3>
-            <table>
-              <thead>
-                <tr>
-                  <th>번호</th>
-                  <th>문제</th>
-                  <th>정답</th>
-                  <th>내 답</th>
-                </tr>
-              </thead>
-              <tbody>
-                {incorrectDetails.map((detail, index) => (
-                  <tr key={index}>
-                    <td>{detail.questionNumber}</td> {/* 문제 번호 추가 */}
-                    <td>{detail.question}</td>
-                    <td>{detail.correctAnswer}</td>
-                    <td>{detail.userAnswer}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <p>전체 문항 수: {allQuestions.length}</p>
+            <p>정답 수: {Object.values(answers).filter((ans) => ans.result === "O").length}</p>
+            <p>오답 수: {Object.values(answers).filter((ans) => ans.result === "X").length}</p>
+
+            
           </div>
+          
         )}
       </main>
       <footer>

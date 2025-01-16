@@ -39,6 +39,7 @@ function App() {
       });
   }, []);
 
+
   useEffect(() => {
     if (fileList.length > 0) {
       const currentFile = fileList[currentPage];
@@ -51,13 +52,15 @@ function App() {
 
           // 초기 정답 표시 상태 설정
           const initialShowAnswers = {};
-          data.questions.forEach((question, index) => {
-            initialShowAnswers[index + 1] = false;
+          data.questions.forEach((_, index) => {
+            const questionIndex = currentPage * data.questions.length + index + 1;
+            initialShowAnswers[questionIndex] = false;
           });
           setShowAnswers(initialShowAnswers);
         });
     }
   }, [fileList, currentPage]);
+  
 
   const handleCheckboxChange = (questionNumber, optionKey) => {
     setAnswers((prevAnswers) => {
@@ -72,10 +75,10 @@ function App() {
           result: isCorrect ? "O" : "X",
         },
       };
-      console.log("Updated Answers:", updatedAnswers); // 체크할 때마다 출력
       return updatedAnswers;
     });
   };
+
 
   const handleInputChange = (questionNumber, value) => {
     setAnswers((prevAnswers) => {
@@ -87,16 +90,14 @@ function App() {
           result: allQuestions[questionNumber - 1].answer === value ? "O" : "X",
         },
       };
-      console.log("Updated Answers:", updatedAnswers); // 입력할 때마다 출력
       return updatedAnswers;
     });
   };
 
 
-
   const handleRestart = () => {
     const initialAnswers = {};
-    allQuestions.forEach((question, index) => {
+    allQuestions.forEach((_, index) => {
       initialAnswers[index + 1] = { selected: "", result: "", input: "" };
     });
     setAnswers(initialAnswers);
@@ -128,7 +129,7 @@ function App() {
 
   const handleFinish = () => {
     const updatedAnswers = { ...answers };
-    allQuestions.forEach((question, index) => {
+    allQuestions.forEach((_, index) => {
       const questionNumber = index + 1;
       if (!updatedAnswers[questionNumber]?.selected && !updatedAnswers[questionNumber]?.input) {
         updatedAnswers[questionNumber] = {
@@ -143,7 +144,7 @@ function App() {
     setIsFinished(true);
   };
 
-   return (
+  return (
     <div className="App">
       <header>
         <h2>정보처리산업기사 과정평가형 기출예상 문제</h2>
@@ -156,7 +157,13 @@ function App() {
             </div>
             {questions.length > 0 ? (
               questions.map((question, index) => {
-                const questionNumber = index + 1 + currentPage * questions.length; // 문제 번호 계산
+                const questionNumber =
+                  Object.keys(answers).find(
+                    (key) =>
+                      allQuestions[parseInt(key, 10) - 1]?.question ===
+                      question.question
+                  ); // answers의 키를 사용하여 문제 번호 가져오기
+
                 return (
                   <div key={questionNumber} className="question">
                     <p>
@@ -204,7 +211,7 @@ function App() {
               <p>문제를 로딩 중...</p>
             )}
           </>
-        ) : (
+        )  : (
           <div>
             <h3>결과</h3>
             <p>전체 문항 수: {allQuestions.length}</p>
@@ -231,22 +238,23 @@ function App() {
                 </tr>
               </thead>
               <tbody>
-                {allQuestions
-                  .filter((q, index) => answers[index + 1]?.result === "X") // 틀린 문제만 필터링
-                  .map((question, index) => {
-                    const questionNumber = index + 1;
+                {Object.entries(answers)
+                  .filter(([_, ans]) => ans.result === "X") // 오답 필터링
+                  .map(([key, answer]) => {
+                    const questionNumber = parseInt(key, 10); // answers의 키를 숫자로 변환
+                    const question = allQuestions[questionNumber - 1];
                     const correctOptionKey = question.answer; // 정답 옵션 키
                     const correctOptionText = question.options
                       ? question.options.find(
                           (option) => Object.keys(option)[0] === correctOptionKey
                         )[correctOptionKey]
                       : question.answer;
-                    const userOptionKey = answers[questionNumber]?.selected || "선택 안 함";
+                    const userOptionKey = answer.selected || "선택 안 함";
                     const userOptionText =
                       userOptionKey !== "선택 안 함"
                         ? question.options?.find(
                             (option) => Object.keys(option)[0] === userOptionKey
-                          )?.[userOptionKey] || answers[questionNumber]?.input
+                          )?.[userOptionKey] || answer.input
                         : "선택 안 함";
 
                     return (

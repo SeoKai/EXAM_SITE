@@ -7,64 +7,56 @@ function App() {
   const [answers, setAnswers] = useState({});
   const [currentPage, setCurrentPage] = useState(0);
   const [fileList, setFileList] = useState([]);
-  const [currentFileName, setCurrentFileName] = useState(""); // 현재 파일 이름 저장
+  const [currentFileName, setCurrentFileName] = useState("전체"); // 현재 파일 이름 저장
   const [showAnswers, setShowAnswers] = useState({}); // 정답 표시 여부 관리
   const [isFinished, setIsFinished] = useState(false); // 종료 여부 상태 관리
+  const [selectedFiles, setSelectedFiles] = useState([]); // 선택된 파일 목록
+  const QUESTIONS_PER_PAGE = 10; // 한 페이지당 보여줄 문제 수
+
 
   useEffect(() => {
     fetch(`${process.env.PUBLIC_URL}/dataset/file-list.json`)
       .then((response) => response.json())
       .then((files) => {
         setFileList(files);
-        setCurrentPage(0);
-
-        // 모든 파일의 데이터를 로드
-        const fetchAllQuestions = files.map((file) =>
-          fetch(`${process.env.PUBLIC_URL}/dataset/${file}`).then((response) =>
-            response.json()
-          )
-        );
-
-        Promise.all(fetchAllQuestions).then((results) => {
-          const combinedQuestions = results.flatMap((result) => result.questions);
-          setAllQuestions(combinedQuestions);
-
-          // 초기 정답 상태 설정 (문제 번호를 키로 설정)
-          const initialAnswers = {};
-          combinedQuestions.forEach((question, index) => {
-            initialAnswers[index + 1] = { selected: "", result: "", input: "" };
-          });
-          setAnswers(initialAnswers);
-        });
+        setSelectedFiles(files); // 기본값으로 전체 파일 선택
       });
   }, []);
 
+  const loadQuestionsFromFiles = () => {
+    const fetchQuestions = selectedFiles.map((file) =>
+      fetch(`${process.env.PUBLIC_URL}/dataset/${file}`).then((response) => response.json())
+    );
 
-  useEffect(() => {
-    if (fileList.length > 0) {
-      const currentFile = fileList[currentPage];
-      setCurrentFileName(currentFile.replace(".json", ""));
+    Promise.all(fetchQuestions).then((results) => {
+      const allQuestions = results.flatMap((result) => result.questions);
+      setQuestions(allQuestions);
 
-      fetch(`${process.env.PUBLIC_URL}/dataset/${currentFile}`)
-        .then((response) => response.json())
-        .then((data) => {
-          setQuestions(data.questions);
+      // 초기 정답 상태 설정
+      const initialAnswers = {};
+      allQuestions.forEach((_, index) => {
+        initialAnswers[index + 1] = { selected: "", result: "", input: "" };
+      });
+      setAnswers(initialAnswers);
+      setShowAnswers({});
+      setCurrentPage(0);
+      setIsFinished(false);
+    });
+  };
 
-          // 초기 정답 표시 상태 설정
-          const initialShowAnswers = {};
-          data.questions.forEach((_, index) => {
-            const questionIndex = currentPage * data.questions.length + index + 1;
-            initialShowAnswers[questionIndex] = false;
-          });
-          setShowAnswers(initialShowAnswers);
-        });
-    }
-  }, [fileList, currentPage]);
-  
+  const handleFileSelection = (fileName) => {
+    setSelectedFiles((prev) => {
+      if (prev.includes(fileName)) {
+        return prev.filter((file) => file !== fileName);
+      } else {
+        return [...prev, fileName];
+      }
+    });
+  };
 
   const handleCheckboxChange = (questionNumber, optionKey) => {
     setAnswers((prevAnswers) => {
-      const question = allQuestions[questionNumber - 1]; // 번호로 문제 찾기
+      const question = questions[questionNumber - 1];
       const isCorrect = question.answer === optionKey;
 
       const updatedAnswers = {
@@ -87,7 +79,7 @@ function App() {
         [questionNumber]: {
           ...prevAnswers[questionNumber],
           input: value,
-          result: allQuestions[questionNumber - 1].answer === value ? "O" : "X",
+          result: questions[questionNumber - 1].answer === value ? "O" : "X",
         },
       };
       return updatedAnswers;
@@ -96,15 +88,15 @@ function App() {
 
 
   const handleRestart = () => {
-    const initialAnswers = {};
-    allQuestions.forEach((_, index) => {
-      initialAnswers[index + 1] = { selected: "", result: "", input: "" };
-    });
-    setAnswers(initialAnswers);
+    setQuestions([]);
+    setAnswers({});
     setIsFinished(false);
-    setCurrentPage(0);
     setShowAnswers({});
+    setSelectedFiles(fileList);
+    setCurrentFileName("전체");
   };
+
+
 
   const toggleAnswerVisibility = (questionNumber) => {
     setShowAnswers((prevShowAnswers) => ({
@@ -129,7 +121,7 @@ function App() {
 
   const handleFinish = () => {
     const updatedAnswers = { ...answers };
-    allQuestions.forEach((_, index) => {
+    questions.forEach((_, index) => {
       const questionNumber = index + 1;
       if (!updatedAnswers[questionNumber]?.selected && !updatedAnswers[questionNumber]?.input) {
         updatedAnswers[questionNumber] = {
@@ -144,88 +136,126 @@ function App() {
     setIsFinished(true);
   };
 
-  return (
+  const getCurrentPageQuestions = () => {
+    const start = currentPage * QUESTIONS_PER_PAGE;
+    const end = start + QUESTIONS_PER_PAGE;
+    return questions.slice(start, end);
+  };
+
+
+   return (
     <div className="App">
       <header>
         <h2>정보처리산업기사 과정평가형 기출예상 문제</h2>
       </header>
       <main>
-        {!isFinished ? (
-          <>
-            <div>
-              <h3>{currentFileName}</h3>
-            </div>
-            {questions.length > 0 ? (
-              questions.map((question, index) => {
-                const questionNumber =
-                  Object.keys(answers).find(
-                    (key) =>
-                      allQuestions[parseInt(key, 10) - 1]?.question ===
-                      question.question
-                  ); // answers의 키를 사용하여 문제 번호 가져오기
-
-                return (
-                  <div key={questionNumber} className="question">
-                    <p>
-                      <strong>문제 {questionNumber}:</strong> {question.question}
-                    </p>
-                    {question.options ? (
-                      <ul>
-                        {question.options.map((option, index) => {
-                          const optionKey = Object.keys(option)[0];
-                          const optionValue = Object.values(option)[0];
-                          return (
-                            <li key={index}>
-                              <label>
-                                <input
-                                  type="checkbox"
-                                  name={`question-${questionNumber}`}
-                                  value={optionKey}
-                                  checked={
-                                    answers[questionNumber]?.selected === optionKey
-                                  }
-                                  onChange={() =>
-                                    handleCheckboxChange(questionNumber, optionKey)
-                                  }
-                                />
-                                {optionValue}
-                              </label>
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    ) : (
+        {!questions.length ? (
+          <div>
+            <h3>시험 파일 선택</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>선택</th>
+                  <th>파일 이름</th>
+                </tr>
+              </thead>
+              <tbody>
+                {fileList.map((file, index) => (
+                  <tr key={index}>
+                    <td>
                       <input
-                        type="text"
-                        value={answers[questionNumber]?.input || ""}
-                        onChange={(e) =>
-                          handleInputChange(questionNumber, e.target.value)
-                        }
-                        placeholder="답을 입력하세요"
+                        type="checkbox"
+                        checked={selectedFiles.includes(file)}
+                        onChange={() => handleFileSelection(file)}
                       />
-                    )}
-                  </div>
-                );
-              })
-            ) : (
-              <p>문제를 로딩 중...</p>
-            )}
-          </>
-        )  : (
+                    </td>
+                    <td>{file.replace(".json", "")}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <button onClick={loadQuestionsFromFiles}>시험 시작</button>
+          </div>
+        ) : !isFinished ? (
+          <div>
+            <h3>{currentFileName}</h3>
+            {getCurrentPageQuestions().map((question, index) => {
+              const questionIndex = currentPage * QUESTIONS_PER_PAGE + index + 1;
+              return (
+                <div key={index} className="question">
+                  <p>
+                    <strong>문제 {questionIndex}:</strong> {question.question}
+                  </p>
+                  {question.options ? (
+                    <ul>
+                      {question.options.map((option, optionIndex) => {
+                        const optionKey = Object.keys(option)[0];
+                        const optionValue = Object.values(option)[0];
+                        return (
+                          <li key={optionIndex}>
+                            <label>
+                              <input
+                                type="checkbox"
+                                name={`question-${questionIndex}`}
+                                value={optionKey}
+                                checked={
+                                  answers[questionIndex]?.selected === optionKey
+                                }
+                                onChange={() =>
+                                  handleCheckboxChange(questionIndex, optionKey)
+                                }
+                              />
+                              {optionValue}
+                            </label>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  ) : (
+                    <input
+                      type="text"
+                      value={answers[questionIndex]?.input || ""}
+                      onChange={(e) =>
+                        handleInputChange(questionIndex, e.target.value)
+                      }
+                      placeholder="답을 입력하세요"
+                    />
+                  )}
+                </div>
+              );
+            })}
+            <footer>
+              <button
+                onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 0))}
+                disabled={currentPage === 0}
+              >
+                이전 페이지
+              </button>
+              <button
+                onClick={() =>
+                  setCurrentPage((prev) =>
+                    Math.min(prev + 1, Math.ceil(questions.length / QUESTIONS_PER_PAGE) - 1)
+                  )
+                }
+                disabled={
+                  currentPage ===
+                  Math.ceil(questions.length / QUESTIONS_PER_PAGE) - 1
+                }
+              >
+                다음 페이지
+              </button>
+              <button onClick={handleFinish}>시험 종료</button>
+            </footer>
+          </div>
+        ) : (
           <div>
             <h3>결과</h3>
-            <p>전체 문항 수: {allQuestions.length}</p>
+            <p>전체 문항 수: {questions.length}</p>
             <p>
-              정답 수:{" "}
-              {
-                Object.values(answers).filter((ans) => ans.result === "O").length
-              }
+              정답 수: {Object.values(answers).filter((ans) => ans.result === "O").length}
             </p>
             <p>
-              오답 수:{" "}
-              {
-                Object.values(answers).filter((ans) => ans.result === "X").length
-              }
+              오답 수: {Object.values(answers).filter((ans) => ans.result === "X").length}
             </p>
             <h3>틀린 문제</h3>
             <table>
@@ -239,58 +269,33 @@ function App() {
               </thead>
               <tbody>
                 {Object.entries(answers)
-                  .filter(([_, ans]) => ans.result === "X") // 오답 필터링
+                  .filter(([_, ans]) => ans.result === "X")
                   .map(([key, answer]) => {
-                    const questionNumber = parseInt(key, 10); // answers의 키를 숫자로 변환
-                    const question = allQuestions[questionNumber - 1];
-                    const correctOptionKey = question.answer; // 정답 옵션 키
-                    const correctOptionText = question.options
-                      ? question.options.find(
-                          (option) => Object.keys(option)[0] === correctOptionKey
-                        )[correctOptionKey]
-                      : question.answer;
-                    const userOptionKey = answer.selected || "선택 안 함";
-                    const userOptionText =
-                      userOptionKey !== "선택 안 함"
-                        ? question.options?.find(
-                            (option) => Object.keys(option)[0] === userOptionKey
-                          )?.[userOptionKey] || answer.input
-                        : "선택 안 함";
+                    const questionNumber = parseInt(key, 10);
+                    const question = questions[questionNumber - 1];
+                    const correctAnswer = question.answer;
+                    const correctAnswerText = question.options
+                      ? question.options.find((option) => Object.keys(option)[0] === correctAnswer)[
+                          correctAnswer
+                        ]
+                      : correctAnswer;
+                    const userAnswer = answer.selected || answer.input || "선택 안 함";
 
                     return (
-                      <tr key={questionNumber}>
+                      <tr key={key}>
                         <td>{questionNumber}</td>
                         <td>{question.question}</td>
-                        <td>
-                          {correctOptionKey} ({correctOptionText})
-                        </td>
-                        <td>{userOptionText}</td>
+                        <td>{correctAnswerText}</td>
+                        <td>{userAnswer}</td>
                       </tr>
                     );
                   })}
               </tbody>
             </table>
+            <button onClick={handleRestart}>다시 시작</button>
           </div>
         )}
       </main>
-      <footer>
-        {!isFinished ? (
-          <>
-            <button onClick={handlePreviousPage} disabled={currentPage === 0}>
-              이전 페이지
-            </button>
-            <button
-              onClick={handleNextPage}
-              disabled={currentPage === fileList.length - 1}
-            >
-              다음 페이지
-            </button>
-            <button onClick={handleFinish}>종료하기</button>
-          </>
-        ) : (
-          <button onClick={handleRestart}>다시 시작</button>
-        )}
-      </footer>
     </div>
   );
 }

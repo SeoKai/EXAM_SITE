@@ -177,17 +177,6 @@ function App() {
             <button onClick={handleDeselectAll}>전체 선택 해제</button>
             <button onClick={() => handleSelectWithKeyword("빈칸")}>"빈칸" 포함 선택</button>
             <button onClick={() => handleDeselectWithKeyword("빈칸")}>"빈칸" 포함 해제</button>
-            <input
-              style={{width:"80px"}}
-              type="number"
-            
-              placeholder="번호선택"
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  handleSelectByNumber(e.target.value);
-                }
-              }}
-            />
             <button onClick={() => handleSelectWithKeyword("4지선다")}>"4지선다" 포함 선택</button>
             <button onClick={() => handleDeselectWithKeyword("4지선다")}>"4지선다" 포함 해제</button>
             
@@ -213,7 +202,10 @@ function App() {
                 ))}
               </tbody>
             </table>
-            <button onClick={loadQuestionsFromFiles}>시험 시작</button>
+
+            <footer>
+              <button onClick={loadQuestionsFromFiles}>시험 시작</button>
+            </footer>
           </div>
         ) : !isFinished ? (
           <div>
@@ -300,7 +292,7 @@ function App() {
             <table>
               <thead>
                 <tr>
-                  <th>번호</th>
+                  <th >번호</th>
                   <th>문제</th>
                   <th>정답</th>
                   <th>내 답</th>
@@ -331,7 +323,9 @@ function App() {
                   })}
               </tbody>
             </table>
-            <button onClick={handleRestart}>다시 시작</button>
+            <footer>
+              <button onClick={handleRestart}>다시 시작</button>
+            </footer>
           </div>
         )}
       </main>

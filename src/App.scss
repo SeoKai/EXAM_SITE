@@ -1,3 +1,6 @@
+*{
+    box-sizing: border-box;
+}
 ul{
     list-style:none;
     padding : 0;
@@ -5,6 +8,8 @@ ul{
 body{
     margin : 0;
     padding : 0;
+    width:100%;
+    
 }
 .module_index table tr{
     display : flex;
@@ -16,12 +21,20 @@ body{
     padding : 5px;
 }
 header{
+    
     height : 70px;
-    border : 1px solid;
+    
     padding-left : 20px;
     background-color: black;
     color : white;
-    position:relative;
+    position:fixed;
+    left:0;
+    right:0;
+    top:0;
+    margin : auto;
+    width:100%;
+    z-index: 999;
+    
     .copyright{
 
         position:absolute;
@@ -37,16 +50,39 @@ main{
     padding : 20px;
     height : 100%;
     overflow: auto;
+    position:relative;
+    margin-top : 70px;
+    
     
 }
 footer{
-
-    width : 100vw;
+    width : 100%;
+    height : 35px;
     padding-left : 20px;
-    padding-bottom : 20px;
+    display:flex;
+    justify-content: left;
+    align-items: center;
+    background-color: lightgray;
+    position:fixed;
+    left:0px;
+    top:70px;
+    z-index: 888;
+    button{
+        margin-right:5px;
+    }
+  
+  
 }
 
 .module_index button{
     font-size : .8rem;
     margin-right:3px;
 }
+
+
+td,th{
+   
+    font-size:.8rem;
+
+}
+

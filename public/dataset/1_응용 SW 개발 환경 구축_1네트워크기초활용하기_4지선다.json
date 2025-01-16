@@ -1,49 +1,169 @@
 {
-    "questions": [
-      {
-        "id": 1,
-        "question": "국제표준기구에서 정의한 네트워크 구조의 기본 모델은 무엇인가?",
-        "options": [
-          {"a": "TCP/IP"},
-          {"b": "OSI 7 계층"},
-          {"c": "HTTP/HTTPS"},
-          {"d": "FTP"}
-        ],
-        "answer": "b"
-      },
-      {
-        "id": 2,
-        "question": "OSI 7 Layer에서 데이터를 전기 신호로 변환하는 계층은?",
-        "options": [
-          {"a": "네트워크 계층"},
-          {"b": "데이터 링크 계층"},
-          {"c": "물리 계층"},
-          {"d": "전송 계층"}
-        ],
-        "answer": "c"
-      },
-      {
-        "id": 3,
-        "question": "송신지에서 데이터를 전송하기 위해 각 계층에서 헤더를 추가하는 과정을 무엇이라 하는가?",
-        "options": [
-          {"a": "디캡슐레이션"},
-          {"b": "인캡슐레이션"},
-          {"c": "라우팅"},
-          {"d": "스위칭"}
-        ],
-        "answer": "b"
-      },
-      {
-        "id": 4,
-        "question": "거리 벡터 기반 라우팅 알고리즘으로 동작하는 프로토콜은?",
-        "options": [
-          {"a": "OSPF"},
-          {"b": "HTTP"},
-          {"c": "RIP"},
-          {"d": "FTP"}
-        ],
-        "answer": "c"
-      }
-    ]
-  }
-  
+  "questions": [
+    {
+      "id": 1,
+      "question": "OSI 7 계층에서 데이터를 인코딩하고 압축하는 역할을 하는 계층은?",
+      "options": [
+        {"a": "Application 계층"},
+        {"b": "Presentation 계층"},
+        {"c": "Transport 계층"},
+        {"d": "Data Link 계층"}
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 2,
+      "question": "네트워크 계층에서 주로 사용하는 프로토콜이 아닌 것은?",
+      "options": [
+        {"a": "IP"},
+        {"b": "ICMP"},
+        {"c": "UDP"},
+        {"d": "ARP"}
+      ],
+      "answer": "c"
+    },
+    {
+      "id": 3,
+      "question": "TCP와 UDP의 주요 차이점으로 알맞은 것은?",
+      "options": [
+        {"a": "TCP는 신뢰성이 없고 UDP는 신뢰성이 있다."},
+        {"b": "TCP는 연결 지향적이고 UDP는 비연결 지향적이다."},
+        {"c": "TCP는 빠르지만 UDP는 느리다."},
+        {"d": "TCP는 주로 방송 통신에 사용된다."}
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 4,
+      "question": "패킷 스위칭 시스템에서 데이터 전송의 주요 단위는?",
+      "options": [
+        {"a": "프레임"},
+        {"b": "패킷"},
+        {"c": "세그먼트"},
+        {"d": "비트"}
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 5,
+      "question": "다음 중 데이터링크 계층에서 사용되는 장비는?",
+      "options": [
+        {"a": "라우터"},
+        {"b": "허브"},
+        {"c": "L2 스위치"},
+        {"d": "웹 방화벽"}
+      ],
+      "answer": "c"
+    },
+    {
+      "id": 6,
+      "question": "라우팅 알고리즘에서 거리 벡터 알고리즘을 사용하는 프로토콜은?",
+      "options": [
+        {"a": "OSPF"},
+        {"b": "BGP"},
+        {"c": "RIP"},
+        {"d": "EIGRP"}
+      ],
+      "answer": "c"
+    },
+    {
+      "id": 7,
+      "question": "TCP/IP 프로토콜 스택의 Internet 계층에 해당하는 OSI 계층은?",
+      "options": [
+        {"a": "Application 계층"},
+        {"b": "Presentation 계층"},
+        {"c": "Network 계층"},
+        {"d": "Transport 계층"}
+      ],
+      "answer": "c"
+    },
+    {
+      "id": 8,
+      "question": "정적 라우팅의 주요 특징은?",
+      "options": [
+        {"a": "네트워크 관리자가 경로를 수동으로 설정한다."},
+        {"b": "라우터 간 정보를 자동으로 교환한다."},
+        {"c": "최단 경로를 자동으로 계산한다."},
+        {"d": "라우팅 테이블이 동적으로 변경된다."}
+      ],
+      "answer": "a"
+    },
+    {
+      "id": 9,
+      "question": "패킷의 목적지 IP를 지정하는 계층은?",
+      "options": [
+        {"a": "Data Link 계층"},
+        {"b": "Network 계층"},
+        {"c": "Transport 계층"},
+        {"d": "Application 계층"}
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 10,
+      "question": "HTTPS 프로토콜에서 사용하는 기본 포트 번호는?",
+      "options": [
+        {"a": "80"},
+        {"b": "21"},
+        {"c": "443"},
+        {"d": "22"}
+      ],
+      "answer": "c"
+    },
+    {
+      "id": 11,
+      "question": "패킷 스위칭의 주요 특징은?",
+      "options": [
+        {"a": "데이터를 순차적으로 전송한다."},
+        {"b": "데이터를 작은 단위로 분할하여 전송한다."},
+        {"c": "데이터를 방송 형태로 전송한다."},
+        {"d": "데이터를 실시간으로 암호화한다."}
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 12,
+      "question": "PDU(Protocol Data Unit)에서 4계층의 데이터 단위는?",
+      "options": [
+        {"a": "비트"},
+        {"b": "프레임"},
+        {"c": "패킷"},
+        {"d": "세그먼트"}
+      ],
+      "answer": "d"
+    },
+    {
+      "id": 13,
+      "question": "네트워크 계층에서 사용하는 주소는?",
+      "options": [
+        {"a": "MAC 주소"},
+        {"b": "IP 주소"},
+        {"c": "포트 번호"},
+        {"d": "URL"}
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 14,
+      "question": "다음 중 OSI 7 계층의 상위 계층에 포함되지 않는 것은?",
+      "options": [
+        {"a": "Application"},
+        {"b": "Session"},
+        {"c": "Transport"},
+        {"d": "Presentation"}
+      ],
+      "answer": "c"
+    },
+    {
+      "id": 15,
+      "question": "TCP 프로토콜에서 송신 데이터의 순서를 지정하는 것은?",
+      "options": [
+        {"a": "Header Checksum"},
+        {"b": "Sequence Number"},
+        {"c": "Fragment Offset"},
+        {"d": "Destination Port"}
+      ],
+      "answer": "b"
+    }
+  ]
+}

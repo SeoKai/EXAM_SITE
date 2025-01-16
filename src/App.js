@@ -177,7 +177,6 @@ function App() {
             <button onClick={handleDeselectAll}>전체 선택 해제</button>
             <button onClick={() => handleSelectWithKeyword("빈칸")}>"빈칸" 포함 선택</button>
             <button onClick={() => handleDeselectWithKeyword("빈칸")}>"빈칸" 포함 해제</button>
-            <button onClick={() => handleSelectWithKeyword("4지선다")}>"4지선다" 포함 선택</button>
             <input
               style={{width:"80px"}}
               type="number"
@@ -189,6 +188,7 @@ function App() {
                 }
               }}
             />
+            <button onClick={() => handleSelectWithKeyword("4지선다")}>"4지선다" 포함 선택</button>
             <button onClick={() => handleDeselectWithKeyword("4지선다")}>"4지선다" 포함 해제</button>
             
             <table>

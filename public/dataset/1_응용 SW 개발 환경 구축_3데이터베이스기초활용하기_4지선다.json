@@ -1,0 +1,48 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "question": "관계형 데이터베이스에서 데이터를 구성하는 기본 단위는 무엇인가?",
+      "options": [
+        {"a": "테이블"},
+        {"b": "컬럼"},
+        {"c": "레코드"},
+        {"d": "데이터셋"}
+      ],
+      "answer": "a"
+    },
+    {
+      "id": 2,
+      "question": "데이터베이스의 무결성을 유지하고 데이터 중복을 최소화하기 위해 수행하는 작업은?",
+      "options": [
+        {"a": "연결 설정"},
+        {"b": "정규화"},
+        {"c": "CRUD 작업"},
+        {"d": "조인"}
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 3,
+      "question": "데이터베이스와 응용소프트웨어 간 연결을 지원하는 Java 기술은?",
+      "options": [
+        {"a": "ORM"},
+        {"b": "JDBC"},
+        {"c": "HTML"},
+        {"d": "SQL"}
+      ],
+      "answer": "b"
+    },
+    {
+      "id": 4,
+      "question": "SQL에서 데이터를 삽입하는 명령어와 데이터를 조회하는 명령어는 각각 무엇인가?",
+      "options": [
+        {"a": "SELECT, DELETE"},
+        {"b": "INSERT, UPDATE"},
+        {"c": "INSERT, SELECT"},
+        {"d": "UPDATE, DELETE"}
+      ],
+      "answer": "c"
+    }
+  ]
+}

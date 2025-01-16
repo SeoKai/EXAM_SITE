@@ -10,7 +10,8 @@ function App() {
 
   useEffect(() => {
     // '/dataset' 디렉토리에서 파일 목록을 가져옵니다.
-    fetch("/dataset/file-list.json")
+    // fetch("/dataset/file-list.json")
+    fetch("https://all-my-projects-2024.github.io/EXAM_SITE/dataset/file-list.json")
       .then((response) => response.json())
       .then((files) => {
         setFileList(files); // 파일 목록을 저장

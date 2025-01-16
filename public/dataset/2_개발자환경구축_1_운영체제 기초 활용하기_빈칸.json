@@ -3,112 +3,52 @@
     {
       "id": 1,
       "question": "운영체제는 ________와 하드웨어 사이에서 인터페이스를 제공한다.",
-      "options": [
-        {"a": "사용자"},
-        {"b": "프로세스"},
-        {"c": "파일 시스템"},
-        {"d": "데이터"}
-      ],
-      "answer": "a"
+      "answer": "사용자"
     },
     {
       "id": 2,
       "question": "UNIX 운영체제는 주로 ________ 및 대규모 데이터 처리가 필요한 환경에서 사용된다.",
-      "options": [
-        {"a": "데스크톱"},
-        {"b": "서버"},
-        {"c": "스마트폰"},
-        {"d": "IoT"}
-      ],
-      "answer": "b"
+      "answer": "서버"
     },
     {
       "id": 3,
       "question": "Windows 운영체제는 Microsoft에서 개발한 ________ 기반 소프트웨어이다.",
-      "options": [
-        {"a": "CLI"},
-        {"b": "텍스트"},
-        {"c": "GUI"},
-        {"d": "모바일"}
-      ],
-      "answer": "c"
+      "answer": "GUI"
     },
     {
       "id": 4,
       "question": "운영체제의 주요 기능은 사용자 보호, 파일 관리, ________ 자원 관리 등을 포함한다.",
-      "options": [
-        {"a": "프로세스"},
-        {"b": "네트워크"},
-        {"c": "보안"},
-        {"d": "전원"}
-      ],
-      "answer": "a"
+      "answer": "프로세스"
     },
     {
       "id": 5,
       "question": "Linux 운영체제의 기본 Locale 값은 ________로 설정된다.",
-      "options": [
-        {"a": "ko_KR.UTF-8"},
-        {"b": "en_US.UTF-8"},
-        {"c": "zh_CN.UTF-8"},
-        {"d": "ja_JP.UTF-8"}
-      ],
-      "answer": "b"
+      "answer": "en_US.UTF-8"
     },
     {
       "id": 6,
       "question": "Android 운영체제는 ________에서 개발한 스마트폰 및 태블릿용 OS이다.",
-      "options": [
-        {"a": "Apple"},
-        {"b": "Microsoft"},
-        {"c": "Google"},
-        {"d": "Amazon"}
-      ],
-      "answer": "c"
+      "answer": "Google"
     },
     {
       "id": 7,
       "question": "운영체제에서 사용자 인터페이스는 주로 CLI와 ________로 구분된다.",
-      "options": [
-        {"a": "GUI"},
-        {"b": "네트워크"},
-        {"c": "보안"},
-        {"d": "텍스트"}
-      ],
-      "answer": "a"
+      "answer": "GUI"
     },
     {
       "id": 8,
       "question": "Linux에서 디렉터리 이동 명령어는 ________이다.",
-      "options": [
-        {"a": "ls"},
-        {"b": "cd"},
-        {"c": "mkdir"},
-        {"d": "rm"}
-      ],
-      "answer": "b"
+      "answer": "cd"
     },
     {
       "id": 9,
       "question": "운영체제의 ________ 기능은 사용자 데이터와 시스템 데이터를 분리하여 보호한다.",
-      "options": [
-        {"a": "보안"},
-        {"b": "네트워크"},
-        {"c": "디버깅"},
-        {"d": "프로세스"}
-      ],
-      "answer": "a"
+      "answer": "보안"
     },
     {
       "id": 10,
       "question": "Windows 운영체제에서 시스템 정보를 확인하는 명령어는 ________이다.",
-      "options": [
-        {"a": "systeminfo"},
-        {"b": "ipconfig"},
-        {"c": "taskmgr"},
-        {"d": "explorer"}
-      ],
-      "answer": "a"
+      "answer": "systeminfo"
     }
   ]
 }

@@ -54,6 +54,14 @@ function App() {
     });
   };
 
+  const handleSelectAll = () => {
+    setSelectedFiles(fileList);
+  };
+
+  const handleDeselectAll = () => {
+    setSelectedFiles([]);
+  };
+
   const handleCheckboxChange = (questionNumber, optionKey) => {
     setAnswers((prevAnswers) => {
       const question = questions[questionNumber - 1];
@@ -71,7 +79,6 @@ function App() {
     });
   };
 
-
   const handleInputChange = (questionNumber, value) => {
     setAnswers((prevAnswers) => {
       const updatedAnswers = {
@@ -86,7 +93,6 @@ function App() {
     });
   };
 
-
   const handleRestart = () => {
     setQuestions([]);
     setAnswers({});
@@ -95,8 +101,6 @@ function App() {
     setSelectedFiles(fileList);
     setCurrentFileName("전체");
   };
-
-
 
   const toggleAnswerVisibility = (questionNumber) => {
     setShowAnswers((prevShowAnswers) => ({
@@ -156,6 +160,8 @@ function App() {
         {!questions.length ? (
           <div className="module_index">
             <h3>시험 모듈_목차 선택</h3>
+            <button onClick={handleSelectAll}>전체 선택</button>
+            <button onClick={handleDeselectAll}>전체 선택 해제</button>
             <table>
               <thead>
                 <tr>
@@ -303,6 +309,5 @@ function App() {
     </div>
   );
 }
-
 
 export default App;

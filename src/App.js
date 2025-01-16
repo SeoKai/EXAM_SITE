@@ -146,16 +146,21 @@ function App() {
     <div className="App">
       <header>
         <h2>정보처리산업기사 과정평가형 기출예상 문제</h2>
+        <div className="copyright">
+             Developed by Jung Woo Gyun, 2025. <br/>
+             Email : jwg8910@naver.com <br/>
+             정리된 자료주시면 문제에 반영하겠습니다<br/>
+        </div>
       </header>
       <main>
         {!questions.length ? (
-          <div>
-            <h3>시험 파일 선택</h3>
+          <div className="module_index">
+            <h3>시험 모듈_목차 선택</h3>
             <table>
               <thead>
                 <tr>
                   <th>선택</th>
-                  <th>파일 이름</th>
+                  <th>모듈_목차명</th>
                 </tr>
               </thead>
               <tbody>

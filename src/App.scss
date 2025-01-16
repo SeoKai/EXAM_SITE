@@ -6,6 +6,15 @@ body{
     margin : 0;
     padding : 0;
 }
+.module_index table tr{
+    display : flex;
+    align-items: center;
+    border : 1px solid;
+}
+.module_index table td:nth-child(1){
+    border-right:1px solid;
+    padding : 5px;
+}
 header{
     height : 70px;
     border : 1px solid;
@@ -19,7 +28,8 @@ header{
         right:10px;
         bottom : 10px;
         color:white;
-        font-size:.8rem;
+        font-size:.7rem;
+        text-align:right;
     }
 }
 main{

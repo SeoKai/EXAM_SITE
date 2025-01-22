@@ -213,12 +213,37 @@ function App() {
           <div className="module_index">
             <h3>시험 모듈_목차 선택</h3>
             <div className="filter-group">
-              <button onClick={handleSelectAll}>전체 선택</button>
-              <button onClick={handleDeselectAll}>전체 선택 해제</button>
-              <button onClick={() => handleSelectWithKeyword("빈칸")}>"빈칸" 포함 선택</button>
-              <button onClick={() => handleDeselectWithKeyword("빈칸")}>"빈칸" 포함 해제</button>
-              <button onClick={() => handleSelectWithKeyword("4지선다")}>"4지선다" 포함 선택</button>
-              <button onClick={() => handleDeselectWithKeyword("4지선다")}>"4지선다" 포함 해제</button>
+              <label>
+                <input
+                  type="checkbox"
+                  defaultChecked
+                  onChange={(e) => {
+                    if (e.target.checked) handleSelectAll();
+                    else handleDeselectAll();
+                  }}
+                />
+                전체 선택
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  onChange={(e) => {
+                    if (e.target.checked) handleSelectWithKeyword("빈칸");
+                    else handleDeselectWithKeyword("빈칸");
+                  }}
+                />
+                빈칸 문제
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  onChange={(e) => {
+                    if (e.target.checked) handleSelectWithKeyword("4지선다");
+                    else handleDeselectWithKeyword("4지선다");
+                  }}
+                />
+                객관식 문제
+              </label>
             </div>
 
             <div style={{ display: "flex", justifyContent: "left" }}>

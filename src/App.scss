@@ -156,5 +156,18 @@ tbody tr td:nth-child(3){
 
 .filter-group{
 
+    display:flex;
+    align-items: center;
+    height : 30px;
+    
+}
+.filter-group input[type="checkbox"]{
+    margin-right : 3px;
+    padding : 0;
+}
+.filter-group label{
+    margin-right : 15px;
+    font-size : .8rem;
+    display:flex;
     
 }

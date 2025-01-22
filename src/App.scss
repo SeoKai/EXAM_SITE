@@ -159,6 +159,11 @@ td,th{
  
     tbody tr {
         position:relative;
+        border : 1px solid;
+    }
+    th,td{
+        border : 0px !important;
+       
     }
     tbody tr th:nth-child(1),
     tbody tr td:nth-child(1){
@@ -166,7 +171,6 @@ td,th{
         position:relative;
         left:0;
         width:30px;
-
     }  
 
 
@@ -174,7 +178,7 @@ td,th{
     tbody tr td:nth-child(2){
 
         max-width:calc(100% - 30px - 50px);
-        font-size : .6rem;
+        font-size : .4rem !important;
         display:flex;
         justify-content: center;
         align-items: center;
@@ -188,6 +192,7 @@ td,th{
         min-width: 50px;
         position:absolute;
         right:0;
+        font-size : .4rem !important;
     }
 
     .summary-note button{

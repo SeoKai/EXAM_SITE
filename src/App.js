@@ -246,7 +246,8 @@ function App() {
               </label>
             </div>
 
-            <div style={{ display: "flex", justifyContent: "left" }}>
+            {/*  */}
+            <div >
               <table>
                 <thead>
                   <tr>

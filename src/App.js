@@ -403,7 +403,7 @@ function App() {
               오답 수: {Object.values(answers).filter((ans) => ans.result === "X").length}
             </p>
             <h3>틀린 문제</h3>
-            <table className="result" style={{width:"100%"}}>
+            <table className="result-table" style={{width:"100%"}}>
               <thead>
                 <tr>
                   <th  >번호</th>

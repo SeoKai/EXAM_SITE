@@ -79,12 +79,13 @@ footer{
     margin-right:3px;
 }
 
-tr{
-   
+.module-table  tr{
+   border : 1px solid;
 }
-td,th{
-    border : 1px solid;
+.module-table td:nth-child(1){
+    border-right : 1px solid;
 }
+
 
 
 
@@ -121,6 +122,15 @@ td,th{
 }
 
 
+.result-table  tr{
+    border : 0;
+}
+.result-table  td,
+.result-table  th
+{
+    border : 1px solid;
+}
+  
 
 /* Mobile-specific styles */
 @media screen and (max-width: 768px) {
@@ -144,29 +154,30 @@ td,th{
         height : 35px;
         font-size : .7rem;
     }
-    .module_index table tr {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .module_index table td {
-        width: 100%;
-        padding: 3px;
-       
-    }
+
+    .module-table  tr{
+        border : 1px solid;
+     }
+     .module-table td,
+     .module-table th{
+         border : 1px solid;
+     }
+
+     
     .module_index button {
         font-size: 0.7rem;
     }
  
-    tbody tr {
+    .module-table tbody tr {
         position:relative;
         border : 1px solid;
     }
-    th,td{
+    .module-table th,td{
         border : 0px !important;
        
     }
-    tbody tr th:nth-child(1),
-    tbody tr td:nth-child(1){
+    .module-table tbody tr th:nth-child(1),
+    .module-table tbody tr td:nth-child(1){
       
         position:relative;
         left:0;
@@ -174,8 +185,8 @@ td,th{
     }  
 
 
-    tbody tr th:nth-child(2),
-    tbody tr td:nth-child(2){
+    .module-table tbody tr th:nth-child(2),
+    .module-table tbody tr td:nth-child(2){
 
         max-width:calc(100% - 30px - 50px);
         font-size : .4rem !important;
@@ -185,8 +196,8 @@ td,th{
         position:absolute;
         left:30px;
     }
-    tbody tr th:nth-child(3),
-    tbody tr td:nth-child(3){   
+    .module-table tbody tr th:nth-child(3),
+    .module-table tbody tr td:nth-child(3){   
        
         max-width: 50px;
         min-width: 50px;
@@ -202,6 +213,54 @@ td,th{
         cursor: pointer;
         font-size : .4rem !important; 
     
+    }
+
+    // RESULT TABLE
+    .result-table tbody tr
+    {
+        position:relative;
+        border : 1px solid !important;
+    }
+
+    .result-table tbody tr th:nth-child(1),
+    .result-table tbody tr td:nth-child(1){
+      
+        position:relative;
+        left:0;
+        width:20px;
+        font-size : .5rem;
+    }  
+
+
+    .result-table tbody tr th:nth-child(2),
+    .result-table tbody tr td:nth-child(2){
+
+        max-width: 180px !important;
+        min-width: 180px !important;
+        font-size : .4rem !important;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        position:relative;
+        left:0px;
+        
+    }
+    .result-table tbody tr th:nth-child(3),
+    .result-table tbody tr td:nth-child(3){   
+       
+        max-width: 50px;
+        min-width: 50px;
+        position:relative;
+        font-size : .4rem !important;
+    }
+    .result-table tbody tr th:nth-child(4),
+    .result-table tbody tr td:nth-child(4){   
+       
+        max-width: 50px;
+        min-width: 50px;
+        position:absolute;
+        right:0;
+        font-size : .4rem !important;
     }
 
 }

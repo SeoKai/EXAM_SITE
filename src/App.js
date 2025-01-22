@@ -264,7 +264,7 @@ function App() {
 
             {/*  */}
             <div >
-              <table>
+              <table className="module-table">
                 <thead>
                   <tr>
                     <th colSpan="3" style={{ textAlign: "center", fontSize: "1.3rem" }}>
@@ -403,10 +403,10 @@ function App() {
               오답 수: {Object.values(answers).filter((ans) => ans.result === "X").length}
             </p>
             <h3>틀린 문제</h3>
-            <table>
+            <table className="result">
               <thead>
                 <tr>
-                  <th >번호</th>
+                  <th style={{minWidth:"30px",maxWidth:"30px"}} >번호</th>
                   <th>문제</th>
                   <th>정답</th>
                   <th>내 답</th>

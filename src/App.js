@@ -187,7 +187,7 @@ function App() {
 
   return (
     <div className="App">
-      
+
       <header>
         <h2>정보처리산업기사 과정평가형 기출예상 문제</h2>
         <div className="copyright">
@@ -195,80 +195,89 @@ function App() {
           Email : jwg8910@naver.com  | Kakao : jwg1323 (선호) <br />
           정리된 자료주시면 문제에 반영하겠습니다<br />
         </div>
-        <div style={{fontSize:"1rem"}}>
-          문제유형 
+        <div style={{ fontSize: "1rem" }}>
+          문제유형
           |
-          <span style={{fontSize:".7rem"}}>&nbsp;&nbsp;4지선다형 (O)&nbsp;&nbsp;</span>
+          <span style={{ fontSize: ".7rem" }}>&nbsp;&nbsp;4지선다형 (O)&nbsp;&nbsp;</span>
           |
-          <span style={{fontSize:".7rem"}}>&nbsp;&nbsp;빈칸문제_주관식 (O)&nbsp;&nbsp;</span>
+          <span style={{ fontSize: ".7rem" }}>&nbsp;&nbsp;빈칸문제_주관식 (O)&nbsp;&nbsp;</span>
           |
-          <span style={{fontSize:".7rem"}}>&nbsp;&nbsp;OX문제 (예정)&nbsp;&nbsp;</span>
+          <span style={{ fontSize: ".7rem" }}>&nbsp;&nbsp;OX문제 (예정)&nbsp;&nbsp;</span>
           |
         </div>
+
       </header>
-      
+
       <main>
         {!questions.length ? (
           <div className="module_index">
             <h3>시험 모듈_목차 선택</h3>
-            <button onClick={handleSelectAll}>전체 선택</button>
-            <button onClick={handleDeselectAll}>전체 선택 해제</button>
-            <button onClick={() => handleSelectWithKeyword("빈칸")}>"빈칸" 포함 선택</button>
-            <button onClick={() => handleDeselectWithKeyword("빈칸")}>"빈칸" 포함 해제</button>
-            <button onClick={() => handleSelectWithKeyword("4지선다")}>"4지선다" 포함 선택</button>
-            <button onClick={() => handleDeselectWithKeyword("4지선다")}>"4지선다" 포함 해제</button>
+            <div className="filter-group">
+              <button onClick={handleSelectAll}>전체 선택</button>
+              <button onClick={handleDeselectAll}>전체 선택 해제</button>
+              <button onClick={() => handleSelectWithKeyword("빈칸")}>"빈칸" 포함 선택</button>
+              <button onClick={() => handleDeselectWithKeyword("빈칸")}>"빈칸" 포함 해제</button>
+              <button onClick={() => handleSelectWithKeyword("4지선다")}>"4지선다" 포함 선택</button>
+              <button onClick={() => handleDeselectWithKeyword("4지선다")}>"4지선다" 포함 해제</button>
+            </div>
 
-            <table>
-              
-              <thead>
-                <tr>
-                  <th colSpan="2" style={{textAlign:"center",fontSize:"1.3rem"}}>
-                    정보처리산업기사 과정평가형 필기 모듈 문제
-                  </th>
-                </tr>
-              </thead>
+            <div style={{ display: "flex", justifyContent: "left" }}>
+              <table>
+                <thead>
+                  <tr>
+                    <th colSpan="3" style={{ textAlign: "center", fontSize: "1.3rem" }}>
+                      정보처리산업기사 과정평가형 필기 모듈 문제
+                    </th>
+                  </tr>
+                </thead>
 
-              <tbody>
-                {Object.entries(groupedFiles).map(([groupKey, files]) => (
-                 
-                 <React.Fragment key={groupKey}>
-                    {/* 그룹 행 */}
-                    <tr>
-                      <td colSpan="2" className="module-group">
-                        <label>
-                          <input
-                            type="checkbox"
-                            checked={files.every((file) => selectedFiles.includes(file))}
-                            onChange={(e) =>
-                              handleGroupCheckboxChange(groupKey, e.target.checked)
-                            }
-                          />
-                          {groupKey}번 그룹 전체 선택/해제
-                        </label>
-                      </td>
-                    </tr>
+                <tbody>
+                  {Object.entries(groupedFiles).map(([groupKey, files]) => (
 
-                    {/* 그룹 내 파일 행 */}
-                    {files.map((file, index) => (
-                      <tr key={file}>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={selectedFiles.includes(file)}
-                            onChange={() => handleFileSelection(file)}
-                          />
+                    <React.Fragment key={groupKey}>
+                      {/* 그룹 행 */}
+                      <tr>
+                        <td colSpan="3" className="module-group">
+                          <label>
+                            <input
+                              type="checkbox"
+                              checked={files.every((file) => selectedFiles.includes(file))}
+                              onChange={(e) =>
+                                handleGroupCheckboxChange(groupKey, e.target.checked)
+                              }
+                            />
+                            {groupKey}번 그룹 전체 선택/해제
+                          </label>
                         </td>
-                        <td>{file.replace(".json", "")}</td>
                       </tr>
-                    ))}
-                  </React.Fragment>
-                ))}
-              </tbody>
 
-            </table>
-            <footer>
-              <button onClick={loadQuestionsFromFiles}>시험 시작</button>
-            </footer>
+                      {/* 그룹 내 파일 행 */}
+                      {files.map((file, index) => (
+                        <tr key={file}>
+                          <td>
+                            <input
+                              type="checkbox"
+                              checked={selectedFiles.includes(file)}
+                              onChange={() => handleFileSelection(file)}
+                            />
+                          </td>
+                          <td>{file.replace(".json", "")}</td>
+                          <td>
+                            요약내용 바로가기
+                          </td>
+                        </tr>
+                      ))}
+                    </React.Fragment>
+                  ))}
+                </tbody>
+
+              </table>
+
+              <footer>
+                <button onClick={loadQuestionsFromFiles}>시험 시작</button>
+              </footer>
+            </div>
+
           </div>
         ) : !isFinished ? (
           <div>

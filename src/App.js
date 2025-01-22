@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.scss";
+import React from "react";
 
 function App() {
   const [allQuestions, setAllQuestions] = useState([]); // 모든 파일의 문제를 저장
@@ -22,6 +23,31 @@ function App() {
         setSelectedFiles(files); // 기본값으로 전체 파일 선택
       });
   }, []);
+
+
+  // 번호별로 파일 그룹화
+  const groupedFiles = fileList.reduce((acc, file) => {
+    const groupKey = file.split("_")[0]; // "1_" 또는 "2_" 등 그룹 키 추출
+    if (!acc[groupKey]) {
+      acc[groupKey] = [];
+    }
+    acc[groupKey].push(file);
+    return acc;
+  }, {});
+  // 그룹 체크박스 핸들러
+  const handleGroupCheckboxChange = (groupKey, isSelected) => {
+    const groupFiles = groupedFiles[groupKey];
+    if (isSelected) {
+      // 그룹 전체 선택
+      setSelectedFiles((prev) => [...new Set([...prev, ...groupFiles])]);
+    } else {
+      // 그룹 전체 선택 해제
+      setSelectedFiles((prev) =>
+        prev.filter((file) => !groupFiles.includes(file))
+      );
+    }
+  };
+
 
   const loadQuestionsFromFiles = () => {
     const fetchQuestions = selectedFiles.map((file) =>
@@ -164,9 +190,9 @@ function App() {
       <header>
         <h2>정보처리산업기사 과정평가형 기출예상 문제</h2>
         <div className="copyright">
-             Developed by Jung Woo Gyun, 2025. | {version} <br/>
-             Email : jwg8910@naver.com  | Kakao : jwg1323 (선호) <br/>
-             정리된 자료주시면 문제에 반영하겠습니다<br/>
+          Developed by Jung Woo Gyun, 2025. | {version} <br />
+          Email : jwg8910@naver.com  | Kakao : jwg1323 (선호) <br />
+          정리된 자료주시면 문제에 반영하겠습니다<br />
         </div>
       </header>
       <main>
@@ -179,7 +205,7 @@ function App() {
             <button onClick={() => handleDeselectWithKeyword("빈칸")}>"빈칸" 포함 해제</button>
             <button onClick={() => handleSelectWithKeyword("4지선다")}>"4지선다" 포함 선택</button>
             <button onClick={() => handleDeselectWithKeyword("4지선다")}>"4지선다" 포함 해제</button>
-            
+
             <table>
               <thead>
                 <tr>
@@ -188,19 +214,41 @@ function App() {
                 </tr>
               </thead>
               <tbody>
-                {fileList.map((file, index) => (
-                  <tr key={index}>
-                    <td>
-                      <input
-                        type="checkbox"
-                        checked={selectedFiles.includes(file)}
-                        onChange={() => handleFileSelection(file)}
-                      />
-                    </td>
-                    <td>{file.replace(".json", "")}</td>
-                  </tr>
+                {Object.entries(groupedFiles).map(([groupKey, files]) => (
+                  <React.Fragment key={groupKey}>
+                    {/* 그룹 행 */}
+                    <tr>
+                      <td colSpan="2">
+                        <label>
+                          <input
+                            type="checkbox"
+                            checked={files.every((file) => selectedFiles.includes(file))}
+                            onChange={(e) =>
+                              handleGroupCheckboxChange(groupKey, e.target.checked)
+                            }
+                          />
+                          {groupKey}번 그룹 전체 선택/해제
+                        </label>
+                      </td>
+                    </tr>
+
+                    {/* 그룹 내 파일 행 */}
+                    {files.map((file, index) => (
+                      <tr key={file}>
+                        <td>
+                          <input
+                            type="checkbox"
+                            checked={selectedFiles.includes(file)}
+                            onChange={() => handleFileSelection(file)}
+                          />
+                        </td>
+                        <td>{file.replace(".json", "")}</td>
+                      </tr>
+                    ))}
+                  </React.Fragment>
                 ))}
               </tbody>
+
             </table>
 
             <footer>

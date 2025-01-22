@@ -195,12 +195,14 @@ function App() {
           Email : jwg8910@naver.com  | Kakao : jwg1323 (선호) <br />
           정리된 자료주시면 문제에 반영하겠습니다<br />
         </div>
-        <div style={{fontSize:".8rem"}}>
+        <div style={{fontSize:"1rem"}}>
           문제유형 
           |
-          <span style={{fontSize:".7rem"}}>&nbsp;&nbsp;4지선다형(O)&nbsp;&nbsp;</span>
+          <span style={{fontSize:".7rem"}}>&nbsp;&nbsp;4지선다형 (O)&nbsp;&nbsp;</span>
           |
-          <span style={{fontSize:".7rem"}}>&nbsp;&nbsp;빈칸문제(O)&nbsp;&nbsp;</span>
+          <span style={{fontSize:".7rem"}}>&nbsp;&nbsp;빈칸문제_주관식 (O)&nbsp;&nbsp;</span>
+          |
+          <span style={{fontSize:".7rem"}}>&nbsp;&nbsp;OX문제 (예정)&nbsp;&nbsp;</span>
           |
         </div>
       </header>

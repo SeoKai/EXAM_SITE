@@ -118,11 +118,18 @@ td,th{
     .module_index table td {
         width: 100%;
         padding: 3px;
+       
     }
     .module_index button {
         font-size: 0.7rem;
     }
     td, th {
         font-size: 0.7rem;
+        
     }
+}
+
+.module-group{
+    width:100%;
+    text-align: center;
 }

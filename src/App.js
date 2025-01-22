@@ -209,8 +209,10 @@ function App() {
             <table>
               <thead>
                 <tr>
-                  <th>선택</th>
-                  <th>모듈_목차명</th>
+                  <th colSpan="2" style={{textAlign:"center",fontSize:"1.3rem"}}>
+                    정보처리산업기사 과정평가형 필기 모듈
+                  </th>
+                  
                 </tr>
               </thead>
               <tbody>
@@ -218,7 +220,7 @@ function App() {
                   <React.Fragment key={groupKey}>
                     {/* 그룹 행 */}
                     <tr>
-                      <td colSpan="2">
+                      <td colSpan="2" className="module-group">
                         <label>
                           <input
                             type="checkbox"
@@ -250,7 +252,6 @@ function App() {
               </tbody>
 
             </table>
-
             <footer>
               <button onClick={loadQuestionsFromFiles}>시험 시작</button>
             </footer>

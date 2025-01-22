@@ -187,6 +187,7 @@ function App() {
 
   return (
     <div className="App">
+      
       <header>
         <h2>정보처리산업기사 과정평가형 기출예상 문제</h2>
         <div className="copyright">
@@ -194,7 +195,16 @@ function App() {
           Email : jwg8910@naver.com  | Kakao : jwg1323 (선호) <br />
           정리된 자료주시면 문제에 반영하겠습니다<br />
         </div>
+        <div style={{fontSize:".8rem"}}>
+          문제유형 
+          |
+          <span style={{fontSize:".7rem"}}>&nbsp;&nbsp;4지선다형(O)&nbsp;&nbsp;</span>
+          |
+          <span style={{fontSize:".7rem"}}>&nbsp;&nbsp;빈칸문제(O)&nbsp;&nbsp;</span>
+          |
+        </div>
       </header>
+      
       <main>
         {!questions.length ? (
           <div className="module_index">
@@ -207,17 +217,19 @@ function App() {
             <button onClick={() => handleDeselectWithKeyword("4지선다")}>"4지선다" 포함 해제</button>
 
             <table>
+              
               <thead>
                 <tr>
                   <th colSpan="2" style={{textAlign:"center",fontSize:"1.3rem"}}>
-                    정보처리산업기사 과정평가형 필기 모듈
+                    정보처리산업기사 과정평가형 필기 모듈 문제
                   </th>
-                  
                 </tr>
               </thead>
+
               <tbody>
                 {Object.entries(groupedFiles).map(([groupKey, files]) => (
-                  <React.Fragment key={groupKey}>
+                 
+                 <React.Fragment key={groupKey}>
                     {/* 그룹 행 */}
                     <tr>
                       <td colSpan="2" className="module-group">

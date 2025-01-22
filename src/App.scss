@@ -22,7 +22,7 @@ body{
 }
 header{
     
-    height : 70px;
+     height : 100px;
     
     padding-left : 20px;
     background-color: black;
@@ -51,7 +51,7 @@ main{
     height : 100%;
     overflow: auto;
     position:relative;
-    margin-top : 70px;
+    margin-top : 100px;
     
     
 }
@@ -65,7 +65,7 @@ footer{
     background-color: lightgray;
     position:fixed;
     left:0px;
-    top:70px;
+    top:100px;
     z-index: 888;
     button{
         margin-right:5px;

@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import "./App.scss";
 import React from "react";
+import { HashRouter as Router, Route, Routes, useNavigate } from "react-router-dom"; // HashRouter와 useNavigate 가져오기
+
+import SummaryPage from "./SummaryPage.js"
+
 
 function App() {
   const [allQuestions, setAllQuestions] = useState([]); // 모든 파일의 문제를 저장
@@ -14,6 +18,8 @@ function App() {
   const [selectedFiles, setSelectedFiles] = useState([]); // 선택된 파일 목록
   const QUESTIONS_PER_PAGE = 10; // 한 페이지당 보여줄 문제 수
   const [version, setVersion] = useState("VERSION 1.0")
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`${process.env.PUBLIC_URL}/dataset/file-list.json`)
@@ -79,6 +85,9 @@ function App() {
       }
     });
   };
+
+
+
 
   const handleSelectAll = () => {
     setSelectedFiles(fileList);
@@ -185,6 +194,13 @@ function App() {
     return questions.slice(start, end);
   };
 
+
+  const navigateToSummary = (fileName) => { // !!!!!!!!!! 요약 페이지로 이동하는 함수 추가
+    setCurrentFileName(fileName.replace(".json", ""));
+    navigate(`/summary/${fileName}`); // !!!!!!!!!! 라우팅 경로 설정
+  };
+
+
   return (
     <div className="App">
 
@@ -288,8 +304,8 @@ function App() {
                             />
                           </td>
                           <td>{file.replace(".json", "")}</td>
-                          <td>
-                            요약내용 바로가기
+                          <td className="summary-note">
+                            <button onClick={() => navigateToSummary(file)}>요약내용 바로가기</button> {/* !!!!!!!!!! 버튼 클릭 시 요약 페이지로 이동 */}
                           </td>
                         </tr>
                       ))}
@@ -427,8 +443,14 @@ function App() {
           </div>
         )}
       </main>
+
+
     </div>
   );
+
+
+
+
 }
 
 export default App;

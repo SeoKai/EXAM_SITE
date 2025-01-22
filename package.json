@@ -2,11 +2,12 @@
   "name": "app",
   "version": "0.1.0",
   "private": true,
-  "homepage" : "https://ALL-MY-PROJECTS-2024.github.io/EXAM_SITE",
+  "homepage": "https://ALL-MY-PROJECTS-2024.github.io/EXAM_SITE",
   "dependencies": {
     "cra-template": "1.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-router-dom": "^7.1.3",
     "react-scripts": "5.0.1",
     "sass": "^1.83.4",
     "scss": "^0.2.4"
@@ -16,8 +17,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy" : "npm run build",
-    "deploy" : "gh-pages -d build"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [

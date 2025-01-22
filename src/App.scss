@@ -132,6 +132,14 @@ tbody tr td:nth-child(3){
     
 }
 
+.summary-note button{
+    background-color: transparent;
+    border : 0;
+    outline : none;
+    cursor: pointer;
+    font-size : .6rem;
+
+}
 
 /* Mobile-specific styles */
 @media screen and (max-width: 768px) {
@@ -201,8 +209,13 @@ tbody tr td:nth-child(3){
         right:0;
     }
 
-    .filter-group{
-
+    .summary-note button{
+        background-color: transparent;
+        border : 0;
+        outline : none;
+        cursor: pointer;
+        font-size : .4rem !important; 
+    
     }
 
 }

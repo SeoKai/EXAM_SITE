@@ -84,36 +84,8 @@ tr{
 }
 td,th{
     border : 1px solid;
-    height:100%;
-    font-size:.8rem;
-    display:flex;
-    align-items:center;
-
-    
 }
 
-tbody tr th:nth-child(1),
-tbody tr td:nth-child(1){
-    width:30px;
-    height:30px;
-}
-
-tbody tr th:nth-child(2),
-tbody tr td:nth-child(2){
-    height:30px;
-    width:500px;
- 
-}
-tbody tr th:nth-child(3),
-tbody tr td:nth-child(3){
-    width:auto;
-    height:30px;
-    font-size : .6rem;
-    min-width:100px;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-}
 
 
 .module-table  .module-group{
@@ -147,7 +119,6 @@ tbody tr td:nth-child(3){
     font-size : .6rem;
 
 }
-
 
 
 

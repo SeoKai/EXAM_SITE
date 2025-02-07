@@ -1,0 +1,123 @@
+{
+  "questions": [
+    {
+      "id": 14,
+      "question": "다음 중 OSI 7 계층의 상위 계층에 포함되지 않는 것은?",
+      "choices": ["Application", "Session", "Transport", "Presentation"],
+      "correct_answer": "Transport",
+      "explanation": "OSI 7 계층에서 상위 계층은 Application(7), Presentation(6), Session(5) 계층을 포함하며, Transport(4) 계층은 하위 계층에 속합니다.",
+      "wrong_answers": {
+        "Application": "사용자와 상호작용하는 계층으로, 상위 계층에 포함됩니다.",
+        "Session": "세션을 설정하고 유지하는 역할을 하며, 상위 계층에 속합니다.",
+        "Presentation": "데이터 인코딩과 압축을 담당하며, 상위 계층에 속합니다."
+      }
+    },
+    {
+      "id": 15,
+      "question": "TCP 프로토콜에서 송신 데이터의 순서를 지정하는 것은?",
+      "choices": [
+        "Header Checksum",
+        "Sequence Number",
+        "Fragment Offset",
+        "Destination Port"
+      ],
+      "correct_answer": "Sequence Number",
+      "explanation": "TCP는 Sequence Number(순서 번호)를 사용하여 데이터의 순서를 추적하고, 올바르게 조립될 수 있도록 합니다.",
+      "wrong_answers": {
+        "Header Checksum": "데이터 무결성을 확인하는 역할을 합니다.",
+        "Fragment Offset": "IP 패킷 단편화(Fragmentation)시 사용됩니다.",
+        "Destination Port": "포트 번호를 지정하는 역할을 하며, 데이터 순서와는 무관합니다."
+      }
+    },
+    {
+      "id": 16,
+      "question": "OSI 7 계층은 데이터를 캡슐화하여 ___ 형태로 송수신한다.",
+      "correct_answer": "PDU(Protocol Data Unit)",
+      "explanation": "각 계층에서 사용하는 데이터 단위를 PDU(Protocol Data Unit)라고 합니다."
+    },
+    {
+      "id": 17,
+      "question": "네트워크 계층은 데이터 전송을 위해 ___ 주소를 사용한다.",
+      "correct_answer": "IP 주소",
+      "explanation": "네트워크 계층에서는 IP 주소를 사용하여 패킷을 라우팅합니다."
+    },
+    {
+      "id": 18,
+      "question": "Transport 계층은 데이터 흐름을 제어하고 ___를(을) 사용한다.",
+      "correct_answer": "포트 번호(Port Number)",
+      "explanation": "전송 계층(4계층)에서는 포트 번호를 사용하여 애플리케이션을 구분합니다."
+    },
+    {
+      "id": 19,
+      "question": "데이터링크 계층에서 송수신되는 데이터 단위는 ___이다.",
+      "correct_answer": "프레임(Frame)",
+      "explanation": "데이터 링크 계층(2계층)에서는 데이터를 프레임(Frame) 단위로 송수신합니다."
+    },
+    {
+      "id": 20,
+      "question": "TCP/IP 프로토콜 스택은 ___ 계층으로 구성된다.",
+      "correct_answer": "4",
+      "explanation": "TCP/IP 모델은 4계층(응용 계층, 전송 계층, 인터넷 계층, 네트워크 인터페이스 계층)으로 구성됩니다."
+    },
+    {
+      "id": 21,
+      "question": "HTTP는 ___ 계층에서 동작하는 프로토콜이다.",
+      "correct_answer": "Application 계층",
+      "explanation": "HTTP(Hypertext Transfer Protocol)는 OSI 7 계층의 응용 계층(Application Layer)에서 동작하는 프로토콜이다. 웹 브라우저와 웹 서버 간의 데이터 교환을 담당하며, HTML 문서, 이미지, JSON 등의 데이터를 전송한다."
+    },
+    {
+      "id": 22,
+      "question": "TCP는 데이터 전송의 신뢰성을 보장하기 위해 ___를(을) 사용한다.",
+      "correct_answer": "ACK(확인 응답)",
+      "explanation": "TCP는 신뢰성을 보장하기 위해 ACK(Acknowledgment, 확인 응답)과 재전송(Retransmission) 메커니즘을 사용한다. 수신자가 데이터를 정상적으로 받았다는 것을 ACK 패킷을 통해 확인하고, 손실된 경우에는 재전송을 수행한다."
+    },
+    {
+      "id": 23,
+      "question": "정적 라우팅은 관리자가 ___을(를) 수동으로 설정한다.",
+      "correct_answer": "라우팅 테이블",
+      "explanation": "정적 라우팅(Static Routing)은 관리자가 라우팅 테이블(Routing Table)을 직접 수동으로 설정하는 방식이다. 동적 라우팅(Dynamic Routing)과 달리, 네트워크 변화에 따라 자동 업데이트되지 않는다."
+    },
+    {
+      "id": 24,
+      "question": "UDP는 TCP에 비해 ___ 속성이 부족하다.",
+      "correct_answer": "신뢰성(Reliability)",
+      "explanation": "UDP(User Datagram Protocol)는 비연결형 프로토콜로, TCP처럼 신뢰성을 보장하지 않는다. 데이터 손실, 순서 보장, 흐름 제어, 오류 검출 등의 기능이 부족하지만, 빠른 속도와 낮은 지연시간이 장점이다."
+    },
+    {
+      "id": 25,
+      "question": "패킷 스위칭 시스템은 데이터를 작은 단위로 나누어 ___으로 전송한다.",
+      "correct_answer": "패킷(Packet)",
+      "explanation": "패킷 스위칭(Packet Switching)에서는 데이터를 패킷(Packet) 단위로 나누어 전송한다. 패킷은 독립적으로 경로를 선택하며, 네트워크 상황에 따라 서로 다른 경로를 통해 전송될 수 있다."
+    },
+    {
+      "id": 26,
+      "question": "DNS는 ___ 계층에서 동작하는 프로토콜이다.",
+      "correct_answer": "Application(응용) 계층",
+      "explanation": "DNS(Domain Name System)는 응용 계층(Application Layer)에서 동작하는 프로토콜이다. 도메인 이름(예: www.google.com)을 IP 주소(142.250.190.78)로 변환하는 역할을 한다."
+    },
+    {
+      "id": 27,
+      "question": "PDU는 각 ___에서 사용하는 데이터 단위를 의미한다.",
+      "correct_answer": "계층(Layer)",
+      "explanation": "PDU(Protocol Data Unit, 프로토콜 데이터 단위)는 OSI 7 계층의 각 계층에서 사용하는 데이터 단위를 의미한다. 물리 계층: 비트(Bit), 데이터 링크 계층: 프레임(Frame), 네트워크 계층: 패킷(Packet), 전송 계층: 세그먼트(Segment)."
+    },
+    {
+      "id": 28,
+      "question": "네트워크 계층에서 사용하는 주요 프로토콜은 ___이다.",
+      "correct_answer": "IP(Internet Protocol)",
+      "explanation": "네트워크 계층(Network Layer)에서 IP(Internet Protocol)는 가장 중요한 역할을 한다. IP는 패킷의 출발지 및 목적지 주소를 지정하고, 네트워크 간 데이터를 전달한다."
+    },
+    {
+      "id": 29,
+      "question": "HTTPS는 TCP 포트 ___번을 사용한다.",
+      "correct_answer": "443",
+      "explanation": "HTTPS(Hypertext Transfer Protocol Secure)는 SSL/TLS 암호화를 적용한 HTTP 프로토콜로, 기본적으로 TCP 포트 443을 사용한다. HTTP는 포트 80을 사용한다."
+    },
+    {
+      "id": 30,
+      "question": "OSI 7 계층의 Presentation 계층은 데이터를 ___하고 압축한다.",
+      "correct_answer": "암호화(Encryption)",
+      "explanation": "Presentation 계층(6계층)은 데이터를 변환(Encoding), 압축(Compression), 암호화(Encryption)하는 역할을 수행한다. 예를 들어, SSL/TLS을 이용한 HTTPS 보안 통신이 이에 해당한다."
+    }
+  ]
+}

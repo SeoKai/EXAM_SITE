@@ -1,0 +1,219 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "question": "OSI 7 계층에서 데이터를 인코딩하고 압축하는 역할을 하는 계층은?",
+      "choices": [
+        "Application 계층",
+        "Presentation 계층",
+        "Transport 계층",
+        "Data Link 계층"
+      ],
+      "correct_answer": "Presentation 계층",
+      "explanation": "Presentation 계층(표현 계층)은 데이터를 인코딩하고 압축하는 역할을 합니다. 예를 들어 암호화(Encryption), 데이터 압축(Compression), 문자 인코딩 변환(예: ASCII ↔ Unicode) 등을 수행합니다.",
+      "wrong_answers": {
+        "Application 계층": "응용 프로그램 실행을 담당하며 애플리케이션 간 데이터 전송을 처리합니다. 데이터 변환 기능을 직접 수행하지 않습니다.",
+        "Transport 계층": "TCP/UDP 프로토콜을 사용하여 데이터의 신뢰성과 흐름 제어를 담당합니다.",
+        "Data Link 계층": "MAC 주소 기반 프레임 전달을 담당하며, 데이터 압축과 관련이 없습니다."
+      }
+    },
+    {
+      "id": 2,
+      "question": "네트워크 계층에서 주로 사용하는 프로토콜이 아닌 것은?",
+      "choices": ["IP", "ICMP", "UDP", "ARP"],
+      "correct_answer": "UDP",
+      "explanation": "UDP(User Datagram Protocol)는 전송 계층(Transport Layer)에 속하는 프로토콜이며 신뢰성을 보장하지 않는 데이터 전송을 수행합니다.",
+      "wrong_answers": {
+        "IP": "패킷의 주소 지정 및 라우팅을 담당하는 네트워크 계층 프로토콜입니다.",
+        "ICMP": "네트워크 오류 및 상태를 알리는 네트워크 계층 프로토콜입니다.",
+        "ARP": "IP 주소를 MAC 주소로 변환하는 네트워크 계층 프로토콜입니다."
+      }
+    },
+    {
+      "id": 3,
+      "question": "TCP와 UDP의 주요 차이점으로 알맞은 것은?",
+      "choices": [
+        "TCP는 신뢰성이 없고 UDP는 신뢰성이 있다.",
+        "TCP는 연결 지향적이고 UDP는 비연결 지향적이다.",
+        "TCP는 빠르지만 UDP는 느리다.",
+        "TCP는 주로 방송 통신에 사용된다."
+      ],
+      "correct_answer": "TCP는 연결 지향적이고 UDP는 비연결 지향적이다.",
+      "explanation": "TCP는 연결을 설정하고 유지하며 신뢰성을 보장하지만 속도가 느립니다. UDP는 연결 설정 없이 데이터를 빠르게 전송하지만 신뢰성을 보장하지 않습니다.",
+      "wrong_answers": {
+        "TCP는 신뢰성이 없고 UDP는 신뢰성이 있다.": "TCP는 신뢰성을 보장하며, UDP는 신뢰성이 없습니다.",
+        "TCP는 빠르지만 UDP는 느리다.": "UDP가 TCP보다 빠르며, TCP는 흐름 제어와 오류 복구로 인해 속도가 느립니다.",
+        "TCP는 주로 방송 통신에 사용된다.": "UDP가 멀티캐스트 및 브로드캐스트 통신에 적합합니다."
+      }
+    },
+    {
+      "id": 4,
+      "question": "패킷 스위칭 시스템에서 데이터 전송의 주요 단위는?",
+      "choices": ["프레임", "패킷", "세그먼트", "비트"],
+      "correct_answer": "패킷",
+      "explanation": "패킷(Packet)은 네트워크 계층에서 데이터가 전송되는 기본 단위입니다. 패킷에는 출발지 주소, 목적지 주소, 데이터, 오류 검출 정보 등이 포함됩니다.",
+      "wrong_answers": {
+        "프레임": "데이터 링크 계층에서 사용되며, 패킷을 포함한 데이터 블록입니다.",
+        "세그먼트": "전송 계층에서 사용되는 데이터 단위입니다.",
+        "비트": "물리 계층에서 사용되는 가장 작은 데이터 단위입니다."
+      }
+    },
+    {
+      "id": 5,
+      "question": "다음 중 데이터링크 계층에서 사용되는 장비는?",
+      "choices": ["라우터", "허브", "L2 스위치", "웹 방화벽"],
+      "correct_answer": "L2 스위치",
+      "explanation": "데이터링크 계층(Layer 2)에서 동작하는 장비는 L2 스위치입니다. L2 스위치는 MAC 주소를 기반으로 프레임을 전달합니다. 허브와 달리 스위칭 기능이 있어 효율적인 통신이 가능합니다.",
+      "wrong_answers": {
+        "라우터": "네트워크 계층에서 동작하며, IP 기반으로 패킷을 전달합니다.",
+        "허브": "물리 계층에서 동작하며, 단순히 신호를 재전송하는 역할만 합니다.",
+        "웹 방화벽": "응용 계층에서 동작하며, 웹 트래픽을 검사하고 필터링합니다."
+      }
+    },
+    {
+      "id": 6,
+      "question": "라우팅 알고리즘에서 거리 벡터 알고리즘을 사용하는 프로토콜은?",
+      "choices": ["OSPF", "BGP", "RIP", "EIGRP"],
+      "correct_answer": "RIP",
+      "explanation": "RIP(Routing Information Protocol)는 거리 벡터 알고리즘을 사용하여 홉 카운트 기반으로 최적의 경로를 결정합니다.",
+      "wrong_answers": {
+        "OSPF": "링크 상태 알고리즘을 사용하며, RIP와 다른 방식입니다.",
+        "BGP": "패스 벡터 알고리즘을 사용합니다.",
+        "EIGRP": "하이브리드 라우팅 프로토콜로, 거리 벡터와 링크 상태 알고리즘을 조합한 방식이다."
+      }
+    },
+    {
+      "id": 7,
+      "question": "TCP/IP 프로토콜 스택의 Internet 계층에 해당하는 OSI 계층은?",
+      "choices": [
+        "Application 계층",
+        "Presentation 계층",
+        "Network 계층",
+        "Transport 계층"
+      ],
+      "correct_answer": "Network 계층",
+      "explanation": "TCP/IP 모델의 Internet 계층은 OSI 7 계층의 Network 계층과 대응됩니다. 이 계층에서는 IP 주소 지정, 라우팅, 패킷 전달 등을 담당합니다.",
+      "wrong_answers": {
+        "Application 계층": "TCP/IP의 Application 계층은 OSI 모델의 응용, 표현, 세션 계층을 포함합니다.",
+        "Presentation 계층": "데이터 인코딩과 압축을 담당하지만 네트워크 계층과 다릅니다.",
+        "Transport 계층": "TCP, UDP를 담당하는 계층이며, 패킷 전달과는 다릅니다."
+      }
+    },
+    {
+      "id": 8,
+      "question": "정적 라우팅의 주요 특징은?",
+      "choices": [
+        "네트워크 관리자가 경로를 수동으로 설정한다.",
+        "라우터 간 정보를 자동으로 교환한다.",
+        "최단 경로를 자동으로 계산한다.",
+        "라우팅 테이블이 동적으로 변경된다."
+      ],
+      "correct_answer": "네트워크 관리자가 경로를 수동으로 설정한다.",
+      "explanation": "정적 라우팅(Static Routing)은 네트워크 관리자가 직접 경로를 수동으로 설정하는 방식입니다. 동적 라우팅과 달리 자동 갱신이 이루어지지 않습니다.",
+      "wrong_answers": {
+        "라우터 간 정보를 자동으로 교환한다.": "이는 동적 라우팅(Dynamic Routing)의 특징입니다.",
+        "최단 경로를 자동으로 계산한다.": "OSPF 같은 동적 라우팅 프로토콜이 수행하는 기능입니다.",
+        "라우팅 테이블이 동적으로 변경된다.": "RIP, OSPF 등의 동적 라우팅 방식에서만 가능합니다."
+      }
+    },
+    {
+      "id": 9,
+      "question": "패킷의 목적지 IP를 지정하는 계층은?",
+      "choices": [
+        "Data Link 계층",
+        "Network 계층",
+        "Transport 계층",
+        "Application 계층"
+      ],
+      "correct_answer": "Network 계층",
+      "explanation": "네트워크 계층(Network Layer)은 IP 주소를 기반으로 목적지를 지정하고 패킷을 전송하는 역할을 합니다.",
+      "wrong_answers": {
+        "Data Link 계층": "MAC 주소 기반 프레임 전송을 담당하며, IP 주소와는 무관합니다.",
+        "Transport 계층": "TCP/UDP 포트 번호를 이용해 애플리케이션을 구분합니다.",
+        "Application 계층": "웹, 이메일 같은 응용 프로그램을 위한 데이터 전송을 담당합니다."
+      }
+    },
+    {
+      "id": 10,
+      "question": "HTTPS 프로토콜에서 사용하는 기본 포트 번호는?",
+      "choices": ["80", "21", "443", "22"],
+      "correct_answer": "443",
+      "explanation": "HTTPS(HTTP Secure)는 SSL/TLS 암호화된 통신을 제공하며, 기본적으로 포트 443을 사용합니다.",
+      "wrong_answers": {
+        "80": "HTTP 프로토콜에서 사용됩니다.",
+        "21": "FTP(File Transfer Protocol)에서 사용됩니다.",
+        "22": "SSH(Secure Shell)에서 사용됩니다."
+      }
+    },
+    {
+      "id": 11,
+      "question": "패킷 스위칭의 주요 특징은?",
+      "choices": [
+        "데이터를 순차적으로 전송한다.",
+        "데이터를 작은 단위로 분할하여 전송한다.",
+        "데이터를 방송 형태로 전송한다.",
+        "데이터를 실시간으로 암호화한다."
+      ],
+      "correct_answer": "데이터를 작은 단위로 분할하여 전송한다.",
+      "explanation": "패킷 스위칭(Packet Switching)은 데이터를 작은 패킷 단위로 나누어 전송하는 방식입니다.",
+      "wrong_answers": {
+        "데이터를 순차적으로 전송한다.": "패킷 스위칭에서는 패킷이 여러 경로를 따라 이동하며, 순서가 보장되지 않습니다.",
+        "데이터를 방송 형태로 전송한다.": "방송(Broadcast) 방식은 패킷 스위칭이 아닌, LAN에서 사용되는 방식으로 네트워크에 연결된 모든 장치로 데이터를 전송합니다.",
+        "데이터를 실시간으로 암호화한다.": "암호화는 보안 프로세스에서 이루어지며, 패킷 스위칭의 핵심 개념이 아닙니다."
+      }
+    },
+    {
+      "id": 12,
+      "question": "PDU(Protocol Data Unit)에서 4계층의 데이터 단위는?",
+      "choices": ["비트", "프레임", "패킷", "세그먼트"],
+      "correct_answer": "세그먼트",
+      "explanation": "전송 계층(Transport Layer, 4계층)에서는 데이터를 세그먼트(Segment) 단위로 처리합니다. TCP에서는 세그먼트(Segment), UDP에서는 데이터그램(Datagram)을 사용합니다.",
+      "wrong_answers": {
+        "비트": "물리 계층(1계층)에서 사용되는 데이터 단위입니다. 실제 전기 신호 또는 광 신호로 표현됩니다.",
+        "프레임": "데이터 링크 계층(2계층)에서 사용되는 데이터 단위입니다. MAC 주소를 기반으로 데이터가 전달됩니다.",
+        "패킷": "네트워크 계층(3계층)에서 사용되는 데이터 단위입니다. IP 주소를 기반으로 데이터가 전달됩니다."
+      }
+    },
+    {
+      "id": 13,
+      "question": "네트워크 계층에서 사용하는 주소는?",
+      "choices": ["MAC 주소", "IP 주소", "포트 번호", "URL"],
+      "correct_answer": "IP 주소",
+      "explanation": "네트워크 계층(3계층)에서는 IP 주소를 사용하여 패킷을 전달합니다.",
+      "wrong_answers": {
+        "MAC 주소": "데이터 링크 계층(2계층)에서 사용되며, 네트웨크 장비(예: 스위치)가 이를 사용하여 데이터를 전달합니다.",
+        "포트 번호": "전송 계층(4계층)에서 사용되며, 특정 애플리케이션을 구분하는 역할을 합니다.",
+        "URL": "응용 계층(7계층)에서 사용되며, 도메인 이름을 기반으로 특정 웹 리소스를 찾는 역할을 합니다."
+      }
+    },
+    {
+      "id": 14,
+      "question": "다음 중 OSI 7 계층의 상위 계층에 포함되지 않는 것은?",
+      "choices": ["Application", "Session", "Transport", "Presentation"],
+      "correct_answer": "Transport",
+      "explanation": "OSI 7 계층에서 상위 계층은 Application(7), Presentation(6), Session(5) 계층을 포함하며, Transport(4) 계층은 하위 계층에 속합니다.",
+      "wrong_answers": {
+        "Application": "사용자와 상호작용하는 계층으로, 상위 계층에 포함됩니다.",
+        "Session": "세션을 설정하고 유지하는 역할을 하며, 상위 계층에 속합니다.",
+        "Presentation": "데이터 인코딩과 압축을 담당하며, 상위 계층에 속합니다."
+      }
+    },
+    {
+      "id": 15,
+      "question": "TCP 프로토콜에서 송신 데이터의 순서를 지정하는 것은?",
+      "choices": [
+        "Header Checksum",
+        "Sequence Number",
+        "Fragment Offset",
+        "Destination Port"
+      ],
+      "correct_answer": "Sequence Number",
+      "explanation": "TCP는 Sequence Number(순서 번호)를 사용하여 데이터의 순서를 추적하고, 올바르게 조립될 수 있도록 합니다.",
+      "wrong_answers": {
+        "Header Checksum": "데이터 무결성을 확인하는 역할을 합니다.",
+        "Fragment Offset": "IP 패킷 단편화(Fragmentation)시 사용됩니다.",
+        "Destination Port": "포트 번호를 지정하는 역할을 하며, 데이터 순서와는 무관합니다."
+      }
+    }
+  ]
+}

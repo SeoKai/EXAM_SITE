@@ -1,0 +1,72 @@
+/* 전체 페이지 스타일 */
+.summary-block {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+}
+
+/* 개별 문제 스타일 */
+.question-item {
+  padding: 15px;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  border-left: 5px solid #b96be9;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* 문제 번호 및 질문 스타일 */
+.question-item h3 {
+  font-size: 18px;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+/* 선택지 리스트 스타일 */
+.question-item ul {
+  list-style-type: none;
+  padding-left: 15px;
+  margin-bottom: 10px;
+}
+
+/* 선택지 스타일 */
+.question-item ul li {
+  padding: 5px 0;
+  font-size: 14px;
+}
+
+/* 정답 강조 스타일 */
+.correct-answer {
+  font-weight: bold;
+  color: #007bff;
+}
+
+/* 정답 및 해설 제목 스타일 */
+.question-item p {
+  font-size: 15px;
+  margin: 10px 0;
+  line-height: 1.5;
+}
+
+/* 해설 구분 라인 */
+.question-item .answer-section {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #ddd;
+}
+
+/* 오답 해설 제목 스타일 */
+.question-item h4 {
+  font-size: 15px;
+  margin-top: 15px;
+  color: #d9534f;
+}
+
+/* 오답 해설 리스트 스타일 */
+.question-item .wrong-answers {
+  list-style-type: disc;
+  padding-left: 20px;
+}

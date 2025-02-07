@@ -1,11 +1,9 @@
 /* 전체 페이지 스타일 */
 .summary-block {
-  max-width: 800px;
   margin: 20px auto;
   padding: 20px;
-  font-family: Arial, sans-serif;
   background-color: #f9f9f9;
-  border-radius: 5px;
+  border-radius: 2px;
 }
 
 /* 개별 문제 스타일 */
@@ -13,7 +11,7 @@
   padding: 15px;
   margin-bottom: 20px;
   background-color: #ffffff;
-  border-left: 5px solid #b96be9;
+  border-left: 5px solid #6b7ae9;
   border-radius: 5px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
@@ -61,12 +59,9 @@
 /* 오답 해설 제목 스타일 */
 .question-item h4 {
   font-size: 15px;
-  margin-top: 15px;
-  color: #d9534f;
 }
 
 /* 오답 해설 리스트 스타일 */
 .question-item .wrong-answers {
-  list-style-type: disc;
-  padding-left: 20px;
+  padding-left: 10px;
 }

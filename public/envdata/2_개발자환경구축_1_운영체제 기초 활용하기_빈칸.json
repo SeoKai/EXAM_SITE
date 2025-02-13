@@ -1,0 +1,94 @@
+{
+  "questions": [
+    {
+      "id": 11,
+      "question": "운영체제는 컴퓨터 시스템과 ________ 간의 인터페이스를 제공한다.",
+      "correct_answer": "사용자",
+      "explanation": "운영체제는 '하드웨어'와 '사용자' 사이에서 동작하며, 사용자가 컴퓨터 자원을 손쉽게 활용할 수 있도록 인터페이스를 제공합니다."
+    },
+    {
+      "id": 12,
+      "question": "운영체제의 주요 기능 중 하나는 주기억 ________ 관리이다.",
+      "correct_answer": "장치",
+      "explanation": "운영체제는 '주기억 장치'(메인 메모리)를 관리하여 프로세스가 효과적으로 실행되도록 합니다."
+    },
+    {
+      "id": 13,
+      "question": "UNIX 운영체제는 ________, HP, Sun사에서 개발한 유료 제품이다.",
+      "correct_answer": "IBM",
+      "explanation": "IBM은 상용 UNIX 계열 운영체제(AIX)를 개발하였으며, HP는 HP-UX, Sun은 Solaris를 개발하여 제공하였습니다."
+    },
+    {
+      "id": 14,
+      "question": "Android 운영체제는 ________에서 개발한 무료 소프트웨어이다.",
+      "correct_answer": "구글",
+      "explanation": "Android는 구글이 인수한 후 개발을 주도하여 무료로 배포하는 모바일 운영체제입니다."
+    },
+    {
+      "id": 15,
+      "question": "Linux 운영체제에서 파일 복사 명령어는 ________이다.",
+      "correct_answer": "cp",
+      "explanation": "Linux/UNIX 환경에서 파일을 복사할 때 사용하는 명령어는 'cp'입니다."
+    },
+    {
+      "id": 16,
+      "question": "Windows 운영체제에서 네트워크 상태를 확인하는 명령어는 ________이다.",
+      "correct_answer": "netstat",
+      "explanation": "'netstat' 명령어는 네트워크 연결 상태, 포트 사용 현황 등을 확인하는 데 사용됩니다."
+    },
+    {
+      "id": 17,
+      "question": "Linux에서 디렉터리를 생성하기 위한 명령어는 ________이다.",
+      "correct_answer": "mkdir",
+      "explanation": "'mkdir' 명령어는 새로운 디렉터리를 생성하는 데 사용됩니다."
+    },
+    {
+      "id": 18,
+      "question": "운영체제는 한정된 ________ 자원을 효율적으로 관리한다.",
+      "correct_answer": "하드웨어",
+      "explanation": "운영체제는 CPU, 메모리, 디스크, 네트워크 등 물리적 자원(하드웨어)을 관리하는 역할을 합니다."
+    },
+    {
+      "id": 19,
+      "question": "Windows 운영체제의 기본 명령어 중 하나는 ________이다.",
+      "correct_answer": "dir",
+      "explanation": "'dir' 명령어는 Windows에서 디렉터리 내 파일 목록을 확인하는 데 사용됩니다."
+    },
+    {
+      "id": 20,
+      "question": "운영체제는 사용자에게 ________을 제공하여 작업을 쉽게 수행할 수 있도록 한다.",
+      "correct_answer": "인터페이스",
+      "explanation": "운영체제는 명령어 해석기(Shell)나 GUI(Graphical User Interface)를 통해 사용자가 컴퓨터를 쉽게 조작할 수 있도록 합니다."
+    },
+    {
+      "id": 21,
+      "question": "Linux 운영체제에서 기본 Locale 값은 ________이다.",
+      "correct_answer": "en_US.UTF-8",
+      "explanation": "국제적인 환경에서 가장 널리 사용되는 기본 로케일(Locale) 값은 'en_US.UTF-8'입니다."
+    },
+    {
+      "id": 22,
+      "question": "Windows 운영체제에서 작업관리자 메뉴를 실행하기 위한 단축키는 ________이다.",
+      "correct_answer": "Ctrl + Shift + Esc",
+      "explanation": "'Ctrl + Shift + Esc'는 작업관리자를 즉시 실행하는 공식 단축키입니다."
+    },
+    {
+      "id": 23,
+      "question": "Linux 운영체제에서 ________ 명령어는 디렉터리 내 파일 목록을 조회한다.",
+      "correct_answer": "ls",
+      "explanation": "'ls' 명령어는 Linux에서 현재 디렉터리 내 파일 및 서브 디렉터리를 확인하는 데 사용됩니다."
+    },
+    {
+      "id": 24,
+      "question": "Windows 운영체제에서 레지스트리 편집기를 실행하는 명령어는 ________이다.",
+      "correct_answer": "regedit",
+      "explanation": "'regedit' 명령어는 Windows 레지스트리 편집기를 실행하는 명령어입니다."
+    },
+    {
+      "id": 25,
+      "question": "운영체제는 처리능력 향상, 응답시간 단축, ________ 향상 등의 기능을 제공한다.",
+      "correct_answer": "신뢰도",
+      "explanation": "운영체제는 신뢰도(Reliability)를 유지하기 위해 안정적인 실행 환경을 제공합니다."
+    }
+  ]
+}

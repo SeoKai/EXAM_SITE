@@ -1,0 +1,94 @@
+{
+  "questions": [
+    {
+      "id": 76,
+      "question": "___는 데이터를 구조화하여 저장하고 관리하는 시스템이다.",
+      "correct_answer": "데이터베이스(Database)",
+      "explanation": "데이터베이스(Database)는 데이터를 체계적으로 저장하고 관리하는 시스템을 의미한다."
+    },
+    {
+      "id": 77,
+      "question": "관계형 데이터베이스에서 데이터는 ___ 형태로 저장된다.",
+      "correct_answer": "테이블(Table)",
+      "explanation": "관계형 데이터베이스(RDBMS)에서는 데이터를 테이블(Table) 구조로 저장하며, 행(Row)과 열(Column)로 구성된다."
+    },
+    {
+      "id": 78,
+      "question": "트랜잭션의 ___ 속성은 모든 작업이 완료되거나 모두 실패하도록 보장한다.",
+      "correct_answer": "원자성(Atomicity)",
+      "explanation": "원자성(Atomicity)은 트랜잭션 내 모든 작업이 완료되거나, 어느 하나라도 실패하면 전체를 롤백(Rollback)하여 무효화하는 속성이다."
+    },
+    {
+      "id": 79,
+      "question": "정규화의 목적은 데이터 ___을(를) 줄이고 무결성을 유지하는 것이다.",
+      "correct_answer": "중복(Redundancy)",
+      "explanation": "정규화(Normalization)는 데이터 중복을 줄이고, 이상(Anomaly)을 방지하며, 데이터 무결성을 유지하는 목적을 가진다."
+    },
+    {
+      "id": 80,
+      "question": "SQL에서 데이터를 삽입하는 명령어는 ___이다.",
+      "correct_answer": "INSERT",
+      "explanation": "INSERT 명령어는 테이블에 새로운 데이터를 추가하는 SQL 명령어이다."
+    },
+    {
+      "id": 81,
+      "question": "관계형 데이터베이스에서 테이블 간 관계를 나타내는 키는 ___이다.",
+      "correct_answer": "외래키(Foreign Key)",
+      "explanation": "외래키(Foreign Key)는 한 테이블의 열(Column)이 다른 테이블의 기본키(Primary Key)와 연결되어 관계를 나타내는 키이다."
+    },
+    {
+      "id": 82,
+      "question": "데이터베이스 관리시스템은 데이터를 안전하게 ___하고 보관한다.",
+      "correct_answer": "관리",
+      "explanation": "데이터베이스 관리 시스템(DBMS, Database Management System)은 데이터를 안전하게 관리(Manage)하고 보관하는 역할을 수행한다."
+    },
+    {
+      "id": 83,
+      "question": "ACID 속성 중 하나인 ___은(는) 트랜잭션 완료 후에도 데이터가 유지됨을 보장한다.",
+      "correct_answer": "내구성(Durability)",
+      "explanation": "내구성(Durability)은 트랜잭션이 성공적으로 완료되면 해당 변경 사항이 영구적으로 저장됨을 보장하는 속성이다."
+    },
+    {
+      "id": 84,
+      "question": "트랜잭션의 고립화 수준 중 가장 낮은 수준은 ___이다.",
+      "correct_answer": "Read Uncommitted",
+      "explanation": "Read Uncommitted(읽기 미완료)는 커밋되지 않은 데이터를 읽을 수 있는 가장 낮은 고립화 수준이다."
+    },
+    {
+      "id": 85,
+      "question": "데이터베이스 정규화 과정에서 발생할 수 있는 문제를 해결하기 위해 ___을(를) 수행한다.",
+      "correct_answer": "비정규화(Denormalization)",
+      "explanation": "정규화를 통해 테이블을 세분화하면 성능 저하 문제가 발생할 수 있으며, 이를 해결하기 위해 비정규화(Denormalization)를 수행하여 테이블을 병합하거나 중복 데이터를 허용하는 방법을 사용한다."
+    },
+    {
+      "id": 86,
+      "question": "객체지향형 데이터베이스는 데이터와 ___를(을) 함께 저장한다.",
+      "correct_answer": "메서드(Methods)",
+      "explanation": "객체지향형 데이터베이스(OODBMS)는 데이터(속성, Attributes)와 메서드(Methods, 동작)를 함께 저장하여 객체를 구성한다."
+    },
+    {
+      "id": 87,
+      "question": "트랜잭션의 ___ 속성은 데이터의 일관성을 유지하도록 보장한다.",
+      "correct_answer": "일관성(Consistency)",
+      "explanation": "일관성(Consistency) 속성은 트랜잭션 실행 전후에도 데이터가 일관된 상태를 유지하도록 보장한다."
+    },
+    {
+      "id": 88,
+      "question": "SQL의 SELECT 문은 데이터베이스에서 ___을(를) 조회하기 위해 사용된다.",
+      "correct_answer": "데이터(Data)",
+      "explanation": "SELECT 문은 데이터베이스에서 데이터를 조회(Query)하는 데 사용되는 SQL 명령어이다."
+    },
+    {
+      "id": 89,
+      "question": "계층형 데이터베이스는 데이터를 ___ 구조로 저장한다.",
+      "correct_answer": "트리(Tree)",
+      "explanation": "계층형 데이터베이스는 트리(Tree) 구조를 기반으로 데이터 간 부모-자식 관계를 정의하여 저장한다."
+    },
+    {
+      "id": 90,
+      "question": "데이터베이스 백업은 데이터를 안전하게 ___하기 위해 수행된다.",
+      "correct_answer": "보존(Preserve)",
+      "explanation": "데이터베이스 백업(Backup)은 데이터를 안전하게 보존(Preserve)하여 장애나 데이터 손실 발생 시 복구할 수 있도록 하는 작업이다."
+    }
+  ]
+}

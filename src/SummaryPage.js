@@ -21,9 +21,7 @@ const SummaryPage = () => {
         <ul>
           {summary.questions.map((q) => (
             <li key={q.id} className="question-item">
-              <h3>
-                {q.id}. {q.question}
-              </h3>
+              <h3>{q.question}</h3>
 
               {/* choices가 없을 경우 빈 배열 []로 처리 */}
               <ul>

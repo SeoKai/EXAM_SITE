@@ -1,10 +1,14 @@
-import { useState, useEffect } from "react";
-import "./App.scss";
-import React from "react";
-import { HashRouter as Router, Route, Routes, useNavigate } from "react-router-dom"; // HashRouter와 useNavigate 가져오기
+import { useState, useEffect } from 'react';
+import './App.scss';
+import React from 'react';
+import {
+  HashRouter as Router,
+  Route,
+  Routes,
+  useNavigate,
+} from 'react-router-dom'; // HashRouter와 useNavigate 가져오기
 
-import SummaryPage from "./SummaryPage.js"
-
+import SummaryPage from './SummaryPage.js';
 
 function App() {
   const [allQuestions, setAllQuestions] = useState([]); // 모든 파일의 문제를 저장
@@ -12,12 +16,12 @@ function App() {
   const [answers, setAnswers] = useState({});
   const [currentPage, setCurrentPage] = useState(0);
   const [fileList, setFileList] = useState([]);
-  const [currentFileName, setCurrentFileName] = useState("전체"); // 현재 파일 이름 저장
+  const [currentFileName, setCurrentFileName] = useState('전체'); // 현재 파일 이름 저장
   const [showAnswers, setShowAnswers] = useState({}); // 정답 표시 여부 관리
   const [isFinished, setIsFinished] = useState(false); // 종료 여부 상태 관리
   const [selectedFiles, setSelectedFiles] = useState([]); // 선택된 파일 목록
   const QUESTIONS_PER_PAGE = 10; // 한 페이지당 보여줄 문제 수
-  const [version, setVersion] = useState("VERSION 1.0")
+  const [version, setVersion] = useState('VERSION 2.0');
 
   const navigate = useNavigate();
 
@@ -30,10 +34,9 @@ function App() {
       });
   }, []);
 
-
   // 번호별로 파일 그룹화
   const groupedFiles = fileList.reduce((acc, file) => {
-    const groupKey = file.split("_")[0]; // "1_" 또는 "2_" 등 그룹 키 추출
+    const groupKey = file.split('_')[0]; // "1_" 또는 "2_" 등 그룹 키 추출
     if (!acc[groupKey]) {
       acc[groupKey] = [];
     }
@@ -54,10 +57,11 @@ function App() {
     }
   };
 
-
   const loadQuestionsFromFiles = () => {
     const fetchQuestions = selectedFiles.map((file) =>
-      fetch(`${process.env.PUBLIC_URL}/dataset/${file}`).then((response) => response.json())
+      fetch(`${process.env.PUBLIC_URL}/dataset/${file}`).then((response) =>
+        response.json()
+      )
     );
 
     Promise.all(fetchQuestions).then((results) => {
@@ -67,7 +71,7 @@ function App() {
       // 초기 정답 상태 설정
       const initialAnswers = {};
       allQuestions.forEach((_, index) => {
-        initialAnswers[index + 1] = { selected: "", result: "", input: "" };
+        initialAnswers[index + 1] = { selected: '', result: '', input: '' };
       });
       setAnswers(initialAnswers);
       setShowAnswers({});
@@ -85,9 +89,6 @@ function App() {
       }
     });
   };
-
-
-
 
   const handleSelectAll = () => {
     setSelectedFiles(fileList);
@@ -120,7 +121,7 @@ function App() {
         [questionNumber]: {
           ...prevAnswers[questionNumber],
           selected: optionKey,
-          result: isCorrect ? "O" : "X",
+          result: isCorrect ? 'O' : 'X',
         },
       };
       return updatedAnswers;
@@ -134,7 +135,7 @@ function App() {
         [questionNumber]: {
           ...prevAnswers[questionNumber],
           input: value,
-          result: questions[questionNumber - 1].answer === value ? "O" : "X",
+          result: questions[questionNumber - 1].answer === value ? 'O' : 'X',
         },
       };
       return updatedAnswers;
@@ -147,7 +148,7 @@ function App() {
     setIsFinished(false);
     setShowAnswers({});
     setSelectedFiles(fileList);
-    setCurrentFileName("전체");
+    setCurrentFileName('전체');
   };
 
   const toggleAnswerVisibility = (questionNumber) => {
@@ -161,7 +162,7 @@ function App() {
     if (currentPage < fileList.length - 1) {
       setCurrentPage((prevPage) => prevPage + 1);
     } else {
-      alert("마지막 페이지입니다.");
+      alert('마지막 페이지입니다.');
     }
   };
 
@@ -175,12 +176,15 @@ function App() {
     const updatedAnswers = { ...answers };
     questions.forEach((_, index) => {
       const questionNumber = index + 1;
-      if (!updatedAnswers[questionNumber]?.selected && !updatedAnswers[questionNumber]?.input) {
+      if (
+        !updatedAnswers[questionNumber]?.selected &&
+        !updatedAnswers[questionNumber]?.input
+      ) {
         updatedAnswers[questionNumber] = {
           ...updatedAnswers[questionNumber],
-          selected: "선택 안 함",
-          input: "",
-          result: "X",
+          selected: '선택 안 함',
+          input: '',
+          result: 'X',
         };
       }
     });
@@ -194,34 +198,36 @@ function App() {
     return questions.slice(start, end);
   };
 
-
-  const navigateToSummary = (fileName) => { // !!!!!!!!!! 요약 페이지로 이동하는 함수 추가
-    setCurrentFileName(fileName.replace(".json", ""));
+  const navigateToSummary = (fileName) => {
+    // !!!!!!!!!! 요약 페이지로 이동하는 함수 추가
+    setCurrentFileName(fileName.replace('.json', ''));
     navigate(`/summary/${fileName}`); // !!!!!!!!!! 라우팅 경로 설정
   };
 
-
   return (
     <div className="App">
-
       <header>
         <h2>정보처리산업기사 과정평가형 기출예상 문제</h2>
         <div className="copyright">
-          Developed by Jung Woo Gyun, 2025. | {version} <br />
-          Email : jwg8910@naver.com  | Kakao : jwg1323 (선호) <br />
-          정리된 자료주시면 문제에 반영하겠습니다<br />
+          Developed by Jung Woo Gyun, Seo Kai 2025. | {version} <br />
+          Email : jwg8910@naver.com | Kakao : jwg1323 (선호) <br />
+          정리된 자료주시면 문제에 반영하겠습니다
+          <br />
         </div>
-        <div style={{ fontSize: "1rem" }}>
-          문제유형
+        <div style={{ fontSize: '1rem' }}>
+          문제유형 |
+          <span style={{ fontSize: '.7rem' }}>
+            &nbsp;&nbsp;4지선다형 (O)&nbsp;&nbsp;
+          </span>
           |
-          <span style={{ fontSize: ".7rem" }}>&nbsp;&nbsp;4지선다형 (O)&nbsp;&nbsp;</span>
-          |
-          <span style={{ fontSize: ".7rem" }}>&nbsp;&nbsp;빈칸문제_주관식 (O)&nbsp;&nbsp;</span>
-          |
-          <span style={{ fontSize: ".7rem" }}>&nbsp;&nbsp;OX문제 (예정)&nbsp;&nbsp;</span>
+          <span style={{ fontSize: '.7rem' }}>
+            &nbsp;&nbsp;빈칸문제_주관식 (O)&nbsp;&nbsp;
+          </span>
+          {/* <span style={{ fontSize: '.7rem' }}>
+            &nbsp;&nbsp;OX문제 (예정)&nbsp;&nbsp;
+          </span> */}
           |
         </div>
-
       </header>
 
       <main>
@@ -244,8 +250,8 @@ function App() {
                 <input
                   type="checkbox"
                   onChange={(e) => {
-                    if (e.target.checked) handleSelectWithKeyword("빈칸");
-                    else handleDeselectWithKeyword("빈칸");
+                    if (e.target.checked) handleSelectWithKeyword('빈칸');
+                    else handleDeselectWithKeyword('빈칸');
                   }}
                 />
                 빈칸 문제
@@ -254,8 +260,8 @@ function App() {
                 <input
                   type="checkbox"
                   onChange={(e) => {
-                    if (e.target.checked) handleSelectWithKeyword("4지선다");
-                    else handleDeselectWithKeyword("4지선다");
+                    if (e.target.checked) handleSelectWithKeyword('4지선다');
+                    else handleDeselectWithKeyword('4지선다');
                   }}
                 />
                 객관식 문제
@@ -263,11 +269,14 @@ function App() {
             </div>
 
             {/*  */}
-            <div >
+            <div>
               <table className="module-table">
                 <thead>
                   <tr>
-                    <th colSpan="3" style={{ textAlign: "center", fontSize: "1.3rem" }}>
+                    <th
+                      colSpan="3"
+                      style={{ textAlign: 'center', fontSize: '1.3rem' }}
+                    >
                       정보처리산업기사 과정평가형 필기 모듈 문제
                     </th>
                   </tr>
@@ -275,7 +284,6 @@ function App() {
 
                 <tbody>
                   {Object.entries(groupedFiles).map(([groupKey, files]) => (
-
                     <React.Fragment key={groupKey}>
                       {/* 그룹 행 */}
                       <tr>
@@ -283,9 +291,14 @@ function App() {
                           <label>
                             <input
                               type="checkbox"
-                              checked={files.every((file) => selectedFiles.includes(file))}
+                              checked={files.every((file) =>
+                                selectedFiles.includes(file)
+                              )}
                               onChange={(e) =>
-                                handleGroupCheckboxChange(groupKey, e.target.checked)
+                                handleGroupCheckboxChange(
+                                  groupKey,
+                                  e.target.checked
+                                )
                               }
                             />
                             {groupKey}번 그룹 전체 선택/해제
@@ -303,29 +316,31 @@ function App() {
                               onChange={() => handleFileSelection(file)}
                             />
                           </td>
-                          <td>{file.replace(".json", "")}</td>
+                          <td>{file.replace('.json', '')}</td>
                           <td className="summary-note">
-                            <button onClick={() => navigateToSummary(file)}>요약내용 바로가기</button> {/* !!!!!!!!!! 버튼 클릭 시 요약 페이지로 이동 */}
+                            <button onClick={() => navigateToSummary(file)}>
+                              요약내용 바로가기
+                            </button>{' '}
+                            {/* !!!!!!!!!! 버튼 클릭 시 요약 페이지로 이동 */}
                           </td>
                         </tr>
                       ))}
                     </React.Fragment>
                   ))}
                 </tbody>
-
               </table>
 
               <footer>
                 <button onClick={loadQuestionsFromFiles}>시험 시작</button>
               </footer>
             </div>
-
           </div>
         ) : !isFinished ? (
           <div>
             <h3>{currentFileName}</h3>
             {getCurrentPageQuestions().map((question, index) => {
-              const questionIndex = currentPage * QUESTIONS_PER_PAGE + index + 1;
+              const questionIndex =
+                currentPage * QUESTIONS_PER_PAGE + index + 1;
               return (
                 <div key={index} className="question">
                   <p>
@@ -359,7 +374,7 @@ function App() {
                   ) : (
                     <input
                       type="text"
-                      value={answers[questionIndex]?.input || ""}
+                      value={answers[questionIndex]?.input || ''}
                       onChange={(e) =>
                         handleInputChange(questionIndex, e.target.value)
                       }
@@ -379,7 +394,10 @@ function App() {
               <button
                 onClick={() =>
                   setCurrentPage((prev) =>
-                    Math.min(prev + 1, Math.ceil(questions.length / QUESTIONS_PER_PAGE) - 1)
+                    Math.min(
+                      prev + 1,
+                      Math.ceil(questions.length / QUESTIONS_PER_PAGE) - 1
+                    )
                   )
                 }
                 disabled={
@@ -397,16 +415,24 @@ function App() {
             <h3>결과</h3>
             <p>전체 문항 수: {questions.length}</p>
             <p>
-              정답 수: {Object.values(answers).filter((ans) => ans.result === "O").length}
+              정답 수:{' '}
+              {
+                Object.values(answers).filter((ans) => ans.result === 'O')
+                  .length
+              }
             </p>
             <p>
-              오답 수: {Object.values(answers).filter((ans) => ans.result === "X").length}
+              오답 수:{' '}
+              {
+                Object.values(answers).filter((ans) => ans.result === 'X')
+                  .length
+              }
             </p>
             <h3>틀린 문제</h3>
-            <table className="result-table" style={{width:"100%"}}>
+            <table className="result-table" style={{ width: '100%' }}>
               <thead>
                 <tr>
-                  <th  >번호</th>
+                  <th>번호</th>
                   <th>문제</th>
                   <th>정답</th>
                   <th>내 답</th>
@@ -414,17 +440,26 @@ function App() {
               </thead>
               <tbody>
                 {Object.entries(answers)
-                  .filter(([_, ans]) => ans.result === "X")
+                  .filter(([_, ans]) => ans.result === 'X')
                   .map(([key, answer]) => {
                     const questionNumber = parseInt(key, 10);
                     const question = questions[questionNumber - 1];
                     const correctAnswer = question.answer;
                     const correctAnswerText = question.options
-                      ? `${correctAnswer} (${question.options.find((option) => Object.keys(option)[0] === correctAnswer)[correctAnswer]})`
+                      ? `${correctAnswer} (${
+                          question.options.find(
+                            (option) => Object.keys(option)[0] === correctAnswer
+                          )[correctAnswer]
+                        })`
                       : correctAnswer;
                     const userAnswer = answer.selected
-                      ? `${answer.selected} (${question.options?.find((option) => Object.keys(option)[0] === answer.selected)?.[answer.selected] || "선택 안 함"})`
-                      : answer.input || "선택 안 함";
+                      ? `${answer.selected} (${
+                          question.options?.find(
+                            (option) =>
+                              Object.keys(option)[0] === answer.selected
+                          )?.[answer.selected] || '선택 안 함'
+                        })`
+                      : answer.input || '선택 안 함';
 
                     return (
                       <tr key={key}>
@@ -443,14 +478,8 @@ function App() {
           </div>
         )}
       </main>
-
-
     </div>
   );
-
-
-
-
 }
 
 export default App;

@@ -84,10 +84,7 @@ function App() {
       // 문제의 옵션을 섞는 로직 추가
       allQuestions = allQuestions.map((question) => {
         if (!Array.isArray(question.options)) {
-          console.error(
-            `Error: question.options is not an array for`,
-            question
-          );
+          console.error(`Error: 문제 구조가 올바르지 않습니다.`, question);
           return question; // 문제 구조가 올바르지 않으면 원본 반환
         }
 
@@ -99,9 +96,7 @@ function App() {
         );
 
         if (!correctOption) {
-          console.error(
-            `Error: Correct answer not found in shuffled options for question: ${question.question}`
-          );
+          console.error(`Error:${question.question}`);
           return question; // 오류 발생 시 원본 문제 반환
         }
 
@@ -136,6 +131,31 @@ function App() {
         return [...prev, fileName];
       }
     });
+  };
+
+  const retryIncorrectQuestions = () => {
+    // 오답만 필터링하여 새로운 문제 목록으로 설정
+    const incorrectQuestions = questions.filter((_, index) => {
+      return answers[index + 1]?.result === 'X';
+    });
+
+    if (incorrectQuestions.length === 0) {
+      alert('틀린 문제가 없습니다.');
+      return;
+    }
+
+    setQuestions(incorrectQuestions);
+
+    // 초기 정답 상태로 재설정
+    const newAnswers = {};
+    incorrectQuestions.forEach((_, index) => {
+      newAnswers[index + 1] = { selected: '', result: '', input: '' };
+    });
+
+    setAnswers(newAnswers);
+    setShowAnswers({});
+    setCurrentPage(0);
+    setIsFinished(false);
   };
 
   const handleSelectAll = () => {
@@ -521,7 +541,15 @@ function App() {
               </tbody>
             </table>
             <footer>
-              <button onClick={handleRestart}>다시 시작</button>
+              <button onClick={handleRestart}>홈으로</button>
+              <button
+                onClick={retryIncorrectQuestions}
+                disabled={Object.values(answers).every(
+                  (ans) => ans.result === 'O'
+                )}
+              >
+                틀린 문제 다시 풀기
+              </button>
             </footer>
           </div>
         )}

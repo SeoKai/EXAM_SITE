@@ -57,15 +57,63 @@ function App() {
     }
   };
 
+  const shuffleArray = (array) => {
+    if (!Array.isArray(array)) {
+      console.error('shuffleArray: Provided argument is not an array', array);
+      return [];
+    }
+    return array
+      .map((item) => ({ item, sort: Math.random() }))
+      .sort((a, b) => a.sort - b.sort)
+      .map(({ item }) => item);
+  };
+
   const loadQuestionsFromFiles = () => {
     const fetchQuestions = selectedFiles.map((file) =>
-      fetch(`${process.env.PUBLIC_URL}/dataset/${file}`).then((response) =>
-        response.json()
-      )
+      fetch(`${process.env.PUBLIC_URL}/dataset/${file}`)
+        .then((response) => response.json())
+        .catch((error) => {
+          console.error(`Error loading file ${file}:`, error);
+          return { questions: [] }; // 에러 발생 시 빈 배열 반환
+        })
     );
 
     Promise.all(fetchQuestions).then((results) => {
-      const allQuestions = results.flatMap((result) => result.questions);
+      let allQuestions = results.flatMap((result) => result.questions);
+
+      // 문제의 옵션을 섞는 로직 추가
+      allQuestions = allQuestions.map((question) => {
+        if (!Array.isArray(question.options)) {
+          console.error(
+            `Error: question.options is not an array for`,
+            question
+          );
+          return question; // 문제 구조가 올바르지 않으면 원본 반환
+        }
+
+        const shuffledOptions = shuffleArray(question.options);
+
+        // 기존 정답 키 찾기
+        const correctOption = shuffledOptions.find(
+          (option) => Object.keys(option)[0] === question.answer
+        );
+
+        if (!correctOption) {
+          console.error(
+            `Error: Correct answer not found in shuffled options for question: ${question.question}`
+          );
+          return question; // 오류 발생 시 원본 문제 반환
+        }
+
+        const newAnswerKey = Object.keys(correctOption)[0];
+
+        return {
+          ...question,
+          options: shuffledOptions,
+          answer: newAnswerKey, // 정답 위치 업데이트
+        };
+      });
+
       setQuestions(allQuestions);
 
       // 초기 정답 상태 설정

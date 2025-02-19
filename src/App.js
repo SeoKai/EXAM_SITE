@@ -135,7 +135,7 @@ function App() {
 
   const retryIncorrectQuestions = () => {
     // 오답만 필터링하여 새로운 문제 목록으로 설정
-    const incorrectQuestions = questions.filter((_, index) => {
+    let incorrectQuestions = questions.filter((_, index) => {
       return answers[index + 1]?.result === 'X';
     });
 
@@ -143,6 +143,34 @@ function App() {
       alert('틀린 문제가 없습니다.');
       return;
     }
+
+    // 틀린 문제들의 선택지를 다시 섞음
+    incorrectQuestions = incorrectQuestions.map((question) => {
+      if (!Array.isArray(question.options)) {
+        console.error(`Error: 문제 구조가 올바르지 않습니다.`, question);
+        return question;
+      }
+
+      const shuffledOptions = shuffleArray(question.options);
+
+      // 기존 정답 키 찾기
+      const correctOption = shuffledOptions.find(
+        (option) => Object.keys(option)[0] === question.answer
+      );
+
+      if (!correctOption) {
+        console.error(`Error: ${question.question}`);
+        return question;
+      }
+
+      const newAnswerKey = Object.keys(correctOption)[0];
+
+      return {
+        ...question,
+        options: shuffledOptions,
+        answer: newAnswerKey, // 정답 위치 업데이트
+      };
+    });
 
     setQuestions(incorrectQuestions);
 
@@ -512,29 +540,30 @@ function App() {
                   .map(([key, answer]) => {
                     const questionNumber = parseInt(key, 10);
                     const question = questions[questionNumber - 1];
-                    const correctAnswer = question.answer;
-                    const correctAnswerText = question.options
-                      ? `${correctAnswer} (${
-                          question.options.find(
-                            (option) => Object.keys(option)[0] === correctAnswer
-                          )[correctAnswer]
-                        })`
-                      : correctAnswer;
-                    const userAnswer = answer.selected
-                      ? `${answer.selected} (${
-                          question.options?.find(
-                            (option) =>
-                              Object.keys(option)[0] === answer.selected
-                          )?.[answer.selected] || '선택 안 함'
-                        })`
+
+                    // 정답 찾기 (정답 코드 제외하고 내용만 표시)
+                    const correctOption = question.options?.find(
+                      (option) => Object.keys(option)[0] === question.answer
+                    );
+                    const correctAnswerText = correctOption
+                      ? Object.values(correctOption)[0] // 정답 내용만 출력
+                      : '정답 없음';
+
+                    // 사용자가 선택한 답 찾기 (코드 제외하고 내용만 표시)
+                    const userSelectedOption = question.options?.find(
+                      (option) => Object.keys(option)[0] === answer.selected
+                    );
+                    const userAnswerText = userSelectedOption
+                      ? Object.values(userSelectedOption)[0] // 사용자 선택 내용만 출력
                       : answer.input || '선택 안 함';
 
                     return (
                       <tr key={key}>
                         <td>{questionNumber}</td>
                         <td>{question.question}</td>
-                        <td>{correctAnswerText}</td>
-                        <td>{userAnswer}</td>
+                        <td>{correctAnswerText}</td> {/* 정답 내용만 표시 */}
+                        <td>{userAnswerText}</td>{' '}
+                        {/* 사용자가 선택한 답 내용만 표시 */}
                       </tr>
                     );
                   })}

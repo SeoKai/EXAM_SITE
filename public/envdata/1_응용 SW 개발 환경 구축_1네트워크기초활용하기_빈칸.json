@@ -1,35 +1,6 @@
 {
   "questions": [
     {
-      "id": 14,
-      "question": "다음 중 OSI 7 계층의 상위 계층에 포함되지 않는 것은?",
-      "choices": ["Application", "Session", "Transport", "Presentation"],
-      "correct_answer": "Transport",
-      "explanation": "OSI 7 계층에서 상위 계층은 Application(7), Presentation(6), Session(5) 계층을 포함하며, Transport(4) 계층은 하위 계층에 속합니다.",
-      "wrong_answers": {
-        "Application": "사용자와 상호작용하는 계층으로, 상위 계층에 포함됩니다.",
-        "Session": "세션을 설정하고 유지하는 역할을 하며, 상위 계층에 속합니다.",
-        "Presentation": "데이터 인코딩과 압축을 담당하며, 상위 계층에 속합니다."
-      }
-    },
-    {
-      "id": 15,
-      "question": "TCP 프로토콜에서 송신 데이터의 순서를 지정하는 것은?",
-      "choices": [
-        "Header Checksum",
-        "Sequence Number",
-        "Fragment Offset",
-        "Destination Port"
-      ],
-      "correct_answer": "Sequence Number",
-      "explanation": "TCP는 Sequence Number(순서 번호)를 사용하여 데이터의 순서를 추적하고, 올바르게 조립될 수 있도록 합니다.",
-      "wrong_answers": {
-        "Header Checksum": "데이터 무결성을 확인하는 역할을 합니다.",
-        "Fragment Offset": "IP 패킷 단편화(Fragmentation)시 사용됩니다.",
-        "Destination Port": "포트 번호를 지정하는 역할을 하며, 데이터 순서와는 무관합니다."
-      }
-    },
-    {
       "id": 16,
       "question": "OSI 7 계층은 데이터를 캡슐화하여 ___ 형태로 송수신한다.",
       "correct_answer": "PDU(Protocol Data Unit)",

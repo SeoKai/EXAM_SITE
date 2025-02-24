@@ -59,8 +59,8 @@ function App() {
 
   const shuffleArray = (array) => {
     if (!Array.isArray(array)) {
-      console.error('shuffleArray: Provided argument is not an array', array);
-      return [];
+      console.warn('shuffleArray: Provided argument is not an array', array);
+      return []; // 비정상적인 경우 빈 배열 반환
     }
     return array
       .map((item) => ({ item, sort: Math.random() }))
@@ -83,9 +83,9 @@ function App() {
 
       // 문제의 옵션을 섞는 로직 추가
       allQuestions = allQuestions.map((question) => {
+        // ✅ 주관식 문제 예외 처리 (options가 없는 경우)
         if (!Array.isArray(question.options)) {
-          console.error(`Error: 문제 구조가 올바르지 않습니다.`, question);
-          return question; // 문제 구조가 올바르지 않으면 원본 반환
+          return question; // 주관식 문제는 그대로 반환
         }
 
         const shuffledOptions = shuffleArray(question.options);
@@ -541,29 +541,38 @@ function App() {
                     const questionNumber = parseInt(key, 10);
                     const question = questions[questionNumber - 1];
 
-                    // 정답 찾기 (정답 코드 제외하고 내용만 표시)
-                    const correctOption = question.options?.find(
-                      (option) => Object.keys(option)[0] === question.answer
-                    );
-                    const correctAnswerText = correctOption
-                      ? Object.values(correctOption)[0] // 정답 내용만 출력
-                      : '정답 없음';
+                    let correctAnswerText;
 
-                    // 사용자가 선택한 답 찾기 (코드 제외하고 내용만 표시)
-                    const userSelectedOption = question.options?.find(
-                      (option) => Object.keys(option)[0] === answer.selected
-                    );
-                    const userAnswerText = userSelectedOption
-                      ? Object.values(userSelectedOption)[0] // 사용자 선택 내용만 출력
-                      : answer.input || '선택 안 함';
+                    if (question.options) {
+                      // 객관식 문제: options 배열에서 정답 찾기
+                      const correctOption = question.options.find(
+                        (option) => Object.keys(option)[0] === question.answer
+                      );
+                      correctAnswerText = correctOption
+                        ? Object.values(correctOption)[0] // 정답 내용 표시
+                        : '정답 없음';
+                    } else {
+                      // 주관식 문제: answer 필드에서 정답 직접 가져오기
+                      correctAnswerText = question.answer || '정답 없음';
+                    }
+
+                    const userAnswerText = question.options
+                      ? (() => {
+                          const selectedOption = question.options.find(
+                            (opt) => Object.keys(opt)[0] === answer.selected
+                          );
+                          return selectedOption
+                            ? Object.values(selectedOption)[0]
+                            : '선택 안 함';
+                        })()
+                      : answer.input || '입력 없음';
 
                     return (
                       <tr key={key}>
                         <td>{questionNumber}</td>
                         <td>{question.question}</td>
-                        <td>{correctAnswerText}</td> {/* 정답 내용만 표시 */}
+                        <td>{correctAnswerText}</td>
                         <td>{userAnswerText}</td>{' '}
-                        {/* 사용자가 선택한 답 내용만 표시 */}
                       </tr>
                     );
                   })}

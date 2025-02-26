@@ -27,7 +27,7 @@
 │   ├── index.html       # 기본 HTML 파일
 │── src/
 │   ├── App.js           # 메인 애플리케이션
-│   ├── SummaryPage.js   # 문제 풀이 결과 요약 페이지
+│   ├── SummaryPage.js   # 문제 해석 페이지
 │   ├── components/      # UI 컴포넌트 모음
 │── package.json         # 프로젝트 종속성 정보
 │── README.md            # 프로젝트 설명 파일
@@ -35,7 +35,6 @@
 
 ## 사용 기술
 - **Frontend**: React, React Router
-- **State Management**: useState, useEffect
 - **데이터 저장소**: JSON 파일 기반 문제 데이터 관리
 
 ## 문제 데이터 형식

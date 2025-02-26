@@ -1,6 +1,6 @@
 # 정보처리산업기사 필기 대비 문제 은행
+##### https://all-my-projects-2024.github.io/EXAM_SITE/
 # ![image](https://github.com/user-attachments/assets/3c850087-6f11-4112-92ea-1aa3b6a75b79)
-
 ---
 
 ## 프로젝트 개요
@@ -37,24 +37,6 @@
 - **Frontend**: React, React Router
 - **State Management**: useState, useEffect
 - **데이터 저장소**: JSON 파일 기반 문제 데이터 관리
-
-## 실행 방법
-1. **프로젝트 클론**
-   ```sh
-   git clone https://github.com/사용자이름/EXAM_SITE.git
-   cd EXAM_SITE
-   ```
-
-2. **의존성 설치**
-   ```sh
-   npm install
-   ```
-
-3. **개발 서버 실행**
-   ```sh
-   npm start
-   ```
-   - 기본적으로 `localhost:3000`에서 실행됨
 
 ## 문제 데이터 형식
 문제 데이터는 JSON 파일로 저장되며, 다음과 같은 구조를 가짐
